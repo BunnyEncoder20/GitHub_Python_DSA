@@ -45,3 +45,13 @@ name, age , isBFF = "Varun", 22, True
 print(name)
 print(age)
 print(isBFF)
+
+
+# Taking in user input 
+name = input("What is your name ? ")    # Note |> that input() always returns a string datatype (series of characters) 
+print("Hello ",name)
+age = int(input("How old are you ? "))
+print("You are "+str(age)+"yrs old") ;
+print("Next year you'll be "+str(age+1)+"yrs old") ;
+height = float(input("How tall are you ? ")) ;
+print("You are "+str(height)+"cms tall") ;
