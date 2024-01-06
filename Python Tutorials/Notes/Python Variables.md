@@ -1,0 +1,439 @@
+# A Quick Tour of Variables and Data Types in Python
+
+![](https://i.imgur.com/6cg2E9Q.png)
+
+This tutorial covers the following topics:
+- Storing information using variables
+- Primitive data types in Python: Integer, Float, Boolean, None and String
+- Built-in data structures in Python: List, Tuple and Dictionary
+- Methods and operators supported by built-in data types
+
+---
+---
+
+## Storing information using variables
+Computers are useful for two purposes: storing information (also known as data) and performing operations on stored data. While working with a programming language such as Python, data is stored in variables. You can think of variables are containers for storing data. The data stored within a variable is called its value. Creating variables in Python is pretty easy.
+```
+my_favorite_color = "blue"
+print(my_favorite_color)        # prints blue
+```
+- A variable is created using an assignment statement. It begins with the variable's name, followed by the assignment operator `=` followed by the value to be stored within the variable.  Note that the assignment operator `=` is different from the equality comparison operator `==`.
+- You can also assign values to multiple variables in a single statement by separating the variable names and values with commas.
+```
+color1, color2, color3 = "red", "green", "blue"
+```
+You can assign the same value to multiple variables by chaining multiple assignment operations within a single statement.
+```
+color4 = color5 = color6 = "magenta"
+```
+You can change the value stored within a variable by assigning a new value to it using another assignment statement. Be careful while reassigning variables: when you assign a new value to the variable, the old value is lost and no longer accessible.
+```
+my_favorite_color = "red"
+```
+While reassigning a variable, you can also use the variable's previous value to compute the new value.
+```
+counter = 10
+counter = counter + 1
+print(counter)      # prints 11
+```
+The pattern `var = var op something` (where `op` is an arithmetic operator like `+`, `-`, `*`, `/`) is very common, so Python provides a *shorthand* syntax for it.
+```
+# Same as `counter = counter + 4`
+counter += 4
+```
+Variable names can be short (`a`, `x`, `y`, etc.) or descriptive ( `my_favorite_color`, `profit_margin`, `the_3_musketeers`, etc.). However, you must follow these rules while naming Python variables:
+
+* A variable's name must start with a letter or the underscore character `_`. It cannot begin with a number.
+* A variable name can only contain lowercase (small) or uppercase (capital) letters, digits, or underscores (`a`-`z`, `A`-`Z`, `0`-`9`, and `_`).
+* Variable names are case-sensitive, i.e., `a_variable`, `A_Variable`, and `A_VARIABLE` are all different variables.
+
+## Built-in data types in Python
+
+Any data or information stored within a Python variable has a *type*. You can view the type of data stored within a variable using the `type` function.
+```
+type(a_variable)
+```
+Python has several built-in data types for storing different kinds of information in variables. Following are some commonly used `data types`:
+
+1. Integer
+2. Float
+3. Boolean
+4. None
+5. String
+6. List
+7. Tuple
+8. Dictionary
+
+`Integer`, `float`, `boolean`, `None`, and `string` are *primitive data types* because they represent a single value. Other data types like `list`, `tuple`, and `dictionary` are often called *data structures* or *containers* because they hold multiple pieces of data together.
+
+---
+### Integer
+
+Integers represent positive or negative whole numbers, from negative infinity to infinity. Note that integers should not include decimal points. Integers have the type `int`.
+Unlike some other programming languages, integers in Python can be arbitrarily large (or small). There's no lowest or highest value for integers, and there's just one `int` type (as opposed to `short`, `int`, `long`, `long long`, `unsigned int`, etc. in C/C++/Java).
+
+---
+
+### Float
+
+Floats (or floating-point numbers) are numbers with a decimal point. There are no limits on the value or the number of digits before or after the decimal point. Floating-point numbers have the type `float`.
+`Note` that a whole number is treated as a `float` if written with a decimal point, even though the decimal portion of the number is zero.
+Floating point numbers can also be written using the scientific notation with an "e" to indicate the power of 10.
+```
+one_hundredth = 1e-2        # 1/100
+Speed_Of_Light = 3e+8        # 3x10^8
+```
+You can convert floats into integers and vice versa using the `float` and `int` functions. The operation of converting one type of value into another is called casting (type casting).
+`Syntax` : datatype_we_want(variable) eg :
+```
+float( intNum )     # converts int to float
+int( floatNum )     # rounds off float to nearest int
+
+```
+While performing arithmetic operations, integers are automatically converted to `float`s if any of the operands is a `float`. Also, the division operator `/` always returns a `float`, even if both operands are integers. Use the `//` operator if you want the result of the division to be an `int`.
+```
+type(45 * 3.0)      # float 
+type(45 * 3)        # int
+type(10/3)          # float
+type(10/2)          # float
+type(10//2)         # int
+```
+
+---
+
+### Boolean
+
+Booleans represent one of 2 values: `True` and `False`. Booleans have the type `bool`.
+Booleans are generally the result of a comparison operation, e.g., `==`, `>=`, etc.
+```
+cost_of_ice_bag = 1.25
+is_ice_bag_expensive = cost_of_ice_bag >= 10
+print(is_ice_bag_expensive)                     # false
+type(is_ice_bag_expensive)                      # bool
+```
+Booleans are automatically converted to `int` when used in arithmetic operations. `True` is converted to `1` and `False` is converted to `0`.
+```
+5 + False       # gives 5 
+3. + True       # gives 4.0
+```
+
+Any value in Python can be converted to a Boolean using the `bool` function. 
+
+Only the following values evaluate to `False` (they are often called ***falsy*** values):
+
+1. The value `False` itself
+2. The integer `0`
+3. The float `0.0`
+4. The empty value `None`
+5. The empty text `""`
+6. The empty list `[]`
+7. The empty tuple `()`
+8. The empty dictionary `{}`
+9. The empty set `set()`
+10. The empty range `range(0)`
+
+Everything else evaluates to `True` (a value that evaluates to `True` is often called a ***truthy*** value).
+
+---
+
+### String
+
+A string is used to represent text (*a string of characters*) in Python. Strings must be surrounded using quotations (either the single quote `'` or the double quote `"`). Strings have the type `string`.
+
+Note that special characters like `\n` and escaped characters like `\"` count as a single character, even though they are written and sometimes printed as two characters.
+
+A string can be converted into a list of characters using `list` function.
+```
+multiline_string = """a
+b"""
+print(multiline_string)     # prints a\nb
+list(multiline_string)
+print(multiline_string)     # prints ['a','\n','b']
+```
+Strings also support several list operations, which are discussed in the next section. We'll look at a couple of examples here.
+
+You can access individual characters within a string using the `[]` indexing notation. Note the character indices go from `0` to `n-1`, where `n` is the length of the string.
+
+You can access a part of a string using by providing a `start:end` range instead of a single index in `[]`.
+```
+toady = 'Saturday'
+today[5:8]                  # day
+```
+
+You can also check whether a string contains a some text using the `in` operator. 
+```
+print('day' in today)       # true
+print('Sun' in today)       # false
+```
+Two or more strings can be joined or *concatenated* using the `+` operator. Be careful while concatenating strings, sometimes you may need to add a space character `" "` between words.
+
+Strings in Python have many built-in *methods* that are used to manipulate them. Let's try out some common string methods.
+
+> **Methods**: Methods are functions associated with data types and are accessed using the `.` notation e.g. `variable_name.method()` or `"a string".method()`. Methods are a powerful technique for associating common operations with values of specific data types.
+
+The `.lower()`, `.upper()` and `.capitalize()` methods are used to change the case of the characters.
+```
+today.lower()               # saturday
+today.upper()               # SATURDAY
+"monday".capitalize()       # Monday
+```
+
+The `.replace` method replaces a part of the string with another string. It takes the portion to be replaced and the replacement text as *inputs* or *arguments*.
+```
+another_day = today.replace("Satur", "Wednes")
+print(another_day)          # Wednesday
+```
+**Note** that `replace` returns a new string, and the original string is not modified.
+
+The `.split()` method splits a string into a list of strings at every occurrence of provided character(s).
+```
+days_of_week = "Sun,Mon,Tue,Wed,Thu,Fri,Sat".split(",")
+print(days_of_week) # ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+```
+The `.strip()` method removes whitespace characters from the beginning and end of a string.
+```
+a_long_line = "       This is a long line with some space before, after,     and some space in the middle..    "
+a_long_line_stripped = a_long_line.strip()
+print(a_long_line_stripped)     # 'This is a long line with some space before, after,     and some space in the middle..'
+```
+
+You can `str` to convert a value of any data type into a string.
+```
+str(23)                     # '23'
+str(23.432)                 # '23.432'
+str(True)                   # 'True'
+
+the_3_musketeers = ["Athos", "Porthos", "Aramis"]
+str(the_3_musketeers)       # "['Athos', 'Porthos', 'Aramis']"
+```
+
+Note that all string methods return new values and DO NOT change the existing string. You can find a full list of string methods [here](https://www.w3schools.com/python/python_ref_string.asp). 
+
+Strings also support the comparison operators `==` and `!=` for checking whether two strings are equal.
+```
+first_name = "John"
+first_name == "Doe"         # False
+first_name == "John"        # True
+first_name != "Jane"        # True
+```
+---
+We've looked at the `primitive` data types in Python. We're now ready to explore `non-primitive` data structures, also known as `containers`.
+
+### List
+
+A list in Python is an ordered collection of values. Lists can hold values of different data types and support operations to add, remove, and change values. Lists have the type `list`.
+
+To create a list, enclose a sequence of values within square brackets `[` and `]`, separated by commas.
+```
+fruits = ['apple', 'banana', 'cherry']
+type(fruits)                # list
+```
+Let's try creating a list containing values of different data types, including another list.
+```
+a_list = [23, 'hello', None, 3.14, fruits, 3 <= 5]
+print(a_list)               # [23, 'hello', None, 3.14, ['apple', 'banana', 'cherry'], True]
+```
+
+To determine the number of values in a list, use the `len` function. You can use `len`  to determine the number of values in several other data types (Eg:String).
+```
+print("Number of fruits:", len(fruits))
+print("Number of a_list:",len(a_list))
+```
+You can access an element from the list using its *index*, e.g., `fruits[2]` returns the element at index 2 within the list `fruits`. (The starting index of a list is 0).
+You can use negative indices to access elements from the end of a list, e.g., `fruits[-1]` returns the last element, `fruits[-2]` returns the second last element, and so on.
+```
+fruits[1]       # 'banana'
+fruits[-1]      # 'cherry'
+fruits[-2]      # 'banana'
+```
+You can also access a `range` of values from the list. The result is itself a list. Let us look at some examples.
+```
+a_list[2:5]     # [None, 3.14, ['apple', 'banana', 'cherry']]
+```
+Note that the range `2:5` includes the element at the start index `2` but does not include the element at the end index `5`. So, the result has 3 values (index `2`, `3`, and `4`).
+This is because starting indexes are inclusive and ending indexes are exclusive in python for almost all the methods.
+You can also change the value at a specific index within a list using the `assignment` operation.
+```
+fruits[1] = 'blueberry'
+```
+A new value can be added to the end of a list using the `append()` method.
+```
+fruits.append('dates')
+print(fruits)               # ['apple', 'blueberry', 'cherry', 'dates']
+```
+A new value can also be inserted at a specific index using the `insert` method.
+```
+fruits.insert(1, 'banana')
+print(fruits)               # ['apple', 'banana', 'blueberry', 'cherry', 'dates']
+```
+
+You can remove a value from a list using the `remove` method.
+```
+fruits.remove('blueberry')
+print(frutis)               # ['apple', 'banana', 'cherry', 'dates']
+```
+**Note** the `.remove()` method will only remove the first occurrence of the element passed if the list contains multi occurrences of the same element
+
+To remove an element from a specific index, use the `pop()` method. The method also returns the removed element.
+```
+fruits              # ['apple', 'banana', 'cherry', 'dates']
+fruits.pop(1)       # returns the popped item : 'banana'
+print(fruits)       # ['apple', 'cherry', 'dates']
+fruits.pop()        # if no idx mentioned, the last element is popped
+print(fruits)       # ['apple', 'cherry']
+```
+
+You can test whether a list contains a value using the `in` operator.
+```
+'pineapple' in fruits       # False
+'cherry' in fruits          # True
+```
+
+To combine two or more lists, use the `+` operator. This operation is also called *concatenation*.
+```
+more_fruits = fruits + ['pineapple', 'tomato', 'guava'] + ['dates', 'banana']
+```
+
+To create a copy of a list, use the `copy` method. Modifying the copied list does not affect the original.
+```
+more_fruits_copy = more_fruits.copy()
+```
+Note that you cannot create a copy of a list by simply creating a new variable using the assignment operator `=`. **The new variable will point to the same list, and any modifications performed using either variable will affect the other**.
+
+Just like strings, there are several `in-built` methods to manipulate a list. However, unlike strings, **most list methods modify the original list** rather than returning a new one. Check out some common list operations [here](https://www.w3schools.com/python/python_ref_list.asp).
+
+---
+
+### Tuple
+
+A tuple is an ordered collection of values, similar to a list. However, it is not possible to add, remove, or modify values in a tuple. A tuple is created by enclosing values within parentheses `(` and `)`, separated by commas.
+
+> Any data structure that cannot be modified after creation is called *immutable*. You can think of tuples as immutable lists.
+```
+fruits = ('apple', 'cherry', 'dates')
+print(len(fruits))                          # 3
+print(fruits[0])                            # 'apple'
+print(fruits[-2])                           # 'cherry'
+print('dates' in fruits)                    # True
+
+fruits[0] = 'avocado'                       # Will Cause an error
+fruits.append('blueberry')                  # Will Cause an error
+fruits.remove('apple')                      # Will Cause an error
+
+```
+
+You can also skip the parantheses `(` and `)` while creating a tuple. Python automatically converts comma-separated values into a tuple.
+```
+the_3_musketeers = 'Athos', 'Porthos', 'Aramis' 
+print(the_3_musketeers)                     # ('Athos', 'Porthos', 'Aramis')
+```
+You can also create a `tuple` with just one element by typing a comma after it. Just wrapping it with parentheses `(` and `)` won't make it a tuple.
+```
+single_element_tuple = 4,                   # (4,)
+another_single_element_tuple = (4,)         # (4,)
+not_a_tuple = (4)                           # taken as just 4 
+```
+
+Tuples are often used to create multiple variables with a single statement.
+```
+point = (3, 4)
+point_x, point_y = point
+point_x                                     # 3
+point_y                                     # 4
+```
+
+You can convert a list into a tuple using the `tuple` function, and vice versa using the `list` function
+```
+tuple(['one', 'two', 'three'])              # ('one', 'two', 'three')
+list(('Athos', 'Porthos', 'Aramis'))        # ['Athos', 'Porthos', 'Aramis']
+```
+Tuples have just two built-in methods: `count` and `index`. Can you figure out what they do?
+```
+a_tuple = 23, "hello", False, None, 23, 37, "hello"
+print(a_tuple.count('hello'))               # 2 - counted the number of occurrence of element
+print(a_tuple.index(None))                  # 3 - index of passed element
+```
+---
+
+### Dictionary
+
+A dictionary is an unordered collection of items. Each item stored in a dictionary has a key and value. You can use a key to retrieve the corresponding value from the dictionary.  Dictionaries have the type `dict`.
+
+Dictionaries are often used to store many pieces of information e.g. details about a person, in a single variable. Dictionaries are created by enclosing key-value pairs within braces or curly brackets `{` and `}`.
+```
+person1 = {
+    'name': 'John Doe',
+    'sex': 'Male',
+    'age': 32,
+    'married': True
+}
+
+print(person1)              # {'name': 'John Doe', 'sex': 'Male', 'age': 32, 'married': True}
+```
+Dictionaries can also be created using the `dict` function.
+```
+person2 = dict(name='Jane Judy', sex='Female', age=28, married=False)
+print(peron2)               # {'name': 'Jane Judy', 'sex': 'Female', 'age': 28, 'married': False}
+print(type(person2))        # dict
+```
+Keys can be used to access values using square brackets `[` and `]`.
+```
+person1['name']             # 'John Doe'
+person1['married']          # True
+person2['name']             # 'Jane Judy'
+person1['addr']             # If a key isn't present in the dictionary, then a KeyError is thrown.
+```
+You can also use the `get` method to access the value associated with a key.
+```
+person2.get("name")         # 'Jane Judy'
+```
+The `get` method also accepts a default value, returned if the key is not present in the dictionary.
+```
+person2.get("address", "Unknown")       # 'Unknown'
+```
+You can check whether a key is present in a dictionary using the `in` operator.
+```
+'name' in person1           # True
+'address' in person1        # False
+```
+You can change the value associated with a key using the assignment operator (`=`).
+```
+person2['married']          # False
+person2['married'] = True
+person2['married']          # True
+```
+The assignment operator can also be used to `add` new key-value pairs to the dictionary.
+```
+person1['address'] = '1, Penny Lane'
+# {'name': 'John Doe', 'sex': 'Male', 'age': 32, 'married': True, 'address':'1, Penny Lane'}
+```
+To remove a key and the associated value from a dictionary, use the `pop()` method.
+```
+person1.pop('address')      # returns the popped item - '1, Penny Lane'
+print(person1)
+# {'name': 'John Doe', 'sex': 'Male', 'age': 32, 'married': True}
+```
+Dictionaries also provide methods to view the list of `keys`, `values`, or `key-value pairs` inside it.
+```
+person1.keys()              # dict_keys(['name', 'sex', 'age', 'married'])
+person1.values()            # dict_values(['John Doe', 'Male', 32, True]
+person1.items()             # dict_items([('name', 'John Doe'), ('sex', 'Male'), ('age', 32), ('married', True)])
+```
+The results of `keys`, `values`, and `items` look like lists. However, they don't support the indexing operator `[]` for retrieving elements. 
+
+Can you figure out how to access an element at a specific index from these results?
+```
+list_of_keys = list(p1.keys())
+list_of_values = list(p1.values())
+list_of_key_val_pairs = list(p1.items())
+```
+Now these are proper `lists` and are **iterable**
+
+
+
+
+
+
+
+
+
