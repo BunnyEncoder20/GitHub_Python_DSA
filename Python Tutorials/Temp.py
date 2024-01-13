@@ -21,26 +21,40 @@ London = ['London',250, 30, 120]
 Dubai = ['Dubai',370, 15, 80]
 Mumbai = ['Mumbai',450, 10, 70]
 destinations = [Paris, London, Dubai, Mumbai]
-results = {}
 
+
+def finding_best_price(days) : 
+    '''Function that takes in number of days and gives back which destination would cost the least for that number of days'''
+    costs = []
+
+    for destination in destinations : 
+        costOfThisTrip = cost_of_trip(destination[1],destination[2],destination[3],duration=days)
+        print(destination[0]+" will cost ₹{} for a week".format(costOfThisTrip))
+        costs.append((destination[0],costOfThisTrip))
+
+    return min(costs, key=lambda x: x[1])
 
 # duration = 7 days cause 1 week trip
-for destination in destinations : 
-    costOfThisTrip = cost_of_trip(destination[1],destination[2],destination[3],duration=7)
-    print(destination[0]+" will cost ₹{} for a week".format(costOfThisTrip))
-    results[destination[0]]=costOfThisTrip
-
-leastCost = 50000
-leastCostKey = '' ;
-for key in results : 
-    if results[key]< leastCost: 
-        leastCost = results[key]
-        leastCostKey = key
-print("The least cost destination would be :\n {} for {} ".format(leastCostKey,results[leastCostKey]))
+bestDeal = finding_best_price(7)
+print("The least cost destination for {} would be :\n {} for {} ".format(7,bestDeal[0],bestDeal[1]))
 
 
 # How the results change when the duration changes 
 # durations = 4 days , 10 days, 2 weeks 
+bestDeal = finding_best_price(4)
+print("The least cost destination for {} would be :\n {} for {} ".format(4,bestDeal[0],bestDeal[1]))
+
+bestDeal = finding_best_price(10)
+print("The least cost destination for {} would be :\n {} for {} ".format(10,bestDeal[0],bestDeal[1]))
+
+bestDeal = finding_best_price(14)
+print("The least cost destination for {} would be :\n {} for {} ".format(14,bestDeal[0],bestDeal[1]))
 
 
 
+
+        
+
+
+
+    

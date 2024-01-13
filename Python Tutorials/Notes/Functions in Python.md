@@ -332,8 +332,11 @@ Answer the following questions using the data above:
 Function for rounding floats to certain decimals 
 > round(x, n): Rounds x to the nearest multiple of 10 to the power of n. If n is omitted or None, it rounds to the nearest integer.
 ```
-import math
-
 result_round_default = round(3.14)  # Result: 3
 result_round_custom = round(3.145, 2)  # Result: 3.14
 ```
+Using the `min` function with a `lambda function` as the `key`
+```
+min_cost_tuple = min(costs, key=lambda x: x[1])
+```
+using the lambda we can pick the key we want for the `sorted`, `min`, `max` functions (what to compare)
