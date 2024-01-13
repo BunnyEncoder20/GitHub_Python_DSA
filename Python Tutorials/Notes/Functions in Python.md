@@ -157,7 +157,7 @@ However, since rounding numbers is a fairly common operation, Python provides a 
 
 > **Modules**: Modules are files containing Python code (variables, functions, classes, etc.). They provide a way of organizing the code for large Python projects into files and folders. The key benefit of using modules is _namespaces_: you must import the module to use its functions within a Python script or notebook. Namespaces provide encapsulation and avoid naming conflicts between your code and a module or across modules.
 
-We can use the `ceil` function (short for *ceiling*) from the `math` module to round up numbers. Let's import the module and use it to round up the number `1.2`. 
+We can use the `ceil` function (short for *ceiling*) from the `math` module to **round up** numbers. Let's import the module and use it to round up the number `1.2`. 
 ```
 import math
 help(math.ceil)     # for seeing what the module is about
@@ -218,3 +218,122 @@ print("Total Monthly EMI payments = ",(house_emi+car_emi))          # 15561
 > Q: If you borrow `$100,000` using a 10-year loan with an interest rate of 9% per annum, what is the total amount you end up paying as interest?
 
 One way to solve this problem is to compare the EMIs for two loans: one with the given rate of interest and another with a 0% rate of interest. The total interest paid is then simply the sum of monthly differences over the duration of the loan.
+```
+emi_with_interest = loan_emi(amount=100000, duration=10*12, rate=0.09/12)
+emi_with_interest               # 1267
+
+emi_without_interest = loan_emi(amount=100000, duration=10*12, rate=0./12)
+emi_without_interest            # Gives an error : ZeroDivisionError: float division by zero
+```
+Something seems to have gone wrong! If you look at the error message above carefully, Python tells us precisely what is wrong. Python *throws* a `ZeroDivisionError` with a message indicating that we're trying to divide a number by zero. `ZeroDivisonError` is an *exception* that stops further execution of the program.
+
+> **Exception**: Even if a statement or expression is syntactically correct, it may cause an error when the Python interpreter tries to execute it. Errors detected during execution are called exceptions. Exceptions typically stop further execution of the program unless handled within the program using `try`-`except` statements.
+
+Python provides many built-in exceptions *thrown* when built-in operators, functions, or methods are used incorrectly. You can also define your custom exception by extending the `Exception` class (more on that later).
+
+You can use the `try` and `except` statements to **handle** an exception. Here's an example:
+```
+try:
+    print("Now computing the result..")
+    result = 5 / 0
+    print("Computation was completed successfully")
+except ZeroDivisionError:
+    print("Failed to compute result because you were trying to divide by zero")
+    result = None
+
+print(result)
+```
+The above code gives the output : 
+```
+Now computing the result..
+Failed to compute result because you were trying to divide by zero
+None
+```
+When an exception occurs inside a `try` block, the block's remaining statements are skipped. The `except` block is executed if the type of exception thrown matches that of the exception being handled. After executing the `except` block, the program execution returns to the normal flow.
+
+You can also handle more than one type of exception using multiple `except` statements. Learn more about exceptions [here](https://www.w3schools.com/python/python_try_except.asp).
+
+Let's enhance the `loan_emi` function to use `try`-`except` to handle the scenario where the interest rate is 0%. It's common practice to make changes/enhancements to functions over time as new scenarios and use cases come up. It makes functions more robust & versatile.
+```
+def loan_emi(amount, duration, rate, down_payment=0):
+    loan_amount = amount - down_payment
+    try:
+        emi = loan_amount * rate * ((1+rate)**duration) / (((1+rate)**duration)-1)
+    except ZeroDivisionError:
+        emi = loan_amount / duration
+    emi = math.ceil(emi)
+    return emi
+```
+We can use the updated `loan_emi` function to solve our problem.
+
+> **Q**: If you borrow `$100,000` using a 10-year loan with an interest rate of 9% per annum, what is the total amount you end up paying as interest?
+
+```
+emi_with_interest = loan_emi(amount=100000, duration=10*12, rate=0.09/12)
+emi_with_interest               # 1267
+
+emi_without_interest = loan_emi(amount=100000, duration=10*12, rate=0)
+emi_without_interest            # 834
+
+total_interest = (emi_with_interest - emi_without_interest) * 10*12
+print("The total interest paid is ${}.".format(total_interest))       # The total interest paid is $51960.
+```
+
+### Documenting functions using Docstrings
+
+We can add some documentation within our function using a *docstring*. A docstring is simply a string that appears as the first statement within the function body, and is used by the `help` function. A good docstring describes what the function does, and provides some explanation about the arguments.
+```
+def loan_emi(amount, duration, rate, down_payment=0):
+    """Calculates the equal montly installment (EMI) for a loan.
+    
+    Arguments:
+        amount - Total amount to be spent (loan + down payment)
+        duration - Duration of the loan (in months)
+        rate - Rate of interest (monthly)
+        down_payment (optional) - Optional intial payment (deducted from amount)
+    """
+    loan_amount = amount - down_payment
+    try:
+        emi = loan_amount * rate * ((1+rate)**duration) / (((1+rate)**duration)-1)
+    except ZeroDivisionError:
+        emi = loan_amount / duration
+    emi = math.ceil(emi)
+    return emi
+```
+In the docstring above, we've provided some additional information that the `duration` and `rate` are measured in months. You might even consider naming the arguments `duration_months` and `rate_monthly`, to avoid any confusion whatsoever. Can you think of some other ways to improve the function?
+```
+help(loan_emi)      # Displays the docString on the functiion loan_emi
+```
+---
+## HomeWork Questions
+## Exercise - Data Analysis for Vacation Planning
+
+You're planning a vacation, and you need to decide which city you want to visit. You have shortlisted four cities and identified the return flight cost, daily hotel cost, and weekly car rental cost. While renting a car, you need to pay for entire weeks, even if you return the car sooner.
+
+
+| City | Return Flight (`$`) | Hotel per day (`$`) | Weekly Car Rental  (`$`) | 
+|------|--------------------------|------------------|------------------------|
+| Paris|       200                |       20         |          200           |
+| London|      250                |       30         |          120           |
+| Dubai|       370                |       15         |          80           |
+| Mumbai|      450                |       10         |          70           |         
+
+
+Answer the following questions using the data above:
+
+1. If you're planning a 1-week long trip, which city should you visit to spend the least amount of money?
+2. How does the answer to the previous question change if you change the trip's duration to four days, ten days or two weeks?
+3. If your total budget for the trip is `$1000`, which city should you visit to maximize the duration of your trip? Which city should you visit if you want to minimize the duration?
+4. How does the answer to the previous question change if your budget is `$600`, `$2000`, or `$1500`?
+
+*Hint: To answer these questions, it will help to define a function `cost_of_trip` with relevant inputs like flight cost, hotel rate, car rental rate, and duration of the trip. You may find the `math.ceil` function useful for calculating the total cost of car rental.*
+
+#### My Solution 
+Function for rounding floats to certain decimals 
+> round(x, n): Rounds x to the nearest multiple of 10 to the power of n. If n is omitted or None, it rounds to the nearest integer.
+```
+import math
+
+result_round_default = round(3.14)  # Result: 3
+result_round_custom = round(3.145, 2)  # Result: 3.14
+```
