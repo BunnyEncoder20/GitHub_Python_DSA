@@ -1,1 +1,7 @@
-🍝
+print(hm.getHash('1-Mar'))
+# print(hm.getHash('2-Mar'))
+# print(hm.getHash('3-Mar'))
+# print(hm.getHash('4-Mar'))
+# print(hm.getHash('5-Mar'))
+# print(hm.getHash('6-Mar'))
+# print(hm.getHash('7-Mar'))

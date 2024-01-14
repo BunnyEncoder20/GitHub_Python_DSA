@@ -73,3 +73,79 @@ print(t.arr)
 # Removing elements 
 del t['2-Apr']
 print(t.arr)
+
+
+
+
+# HashMap with Collision handling 
+class HashMap :
+    def __init__(self) :
+        self.MAX = 10
+        self.arr = [[] for i in range(self.MAX)]
+    
+    def getHash(self, key) : 
+        h = 0 
+        for char in key : 
+            h+=ord(char)        
+        return h % self.MAX
+    
+    def __setitem__(self, key, value) :
+        idx = self.getHash(key)
+        found = False 
+        for i,element in enumerate(self.arr[idx]) :
+            if(len(element)==2 and element[0]==key):
+                element[1] = value
+                found = True
+                break 
+        
+        if not found : 
+            self.arr[idx].append((key,value))
+    
+    def __delitem__(self,key) :
+        idx = self.getHash(key)
+        found = False 
+        for i,element in enumerate(self.arr[idx]) :
+            if(element[0]==key):
+                del self.arr[idx][i] 
+                found = True
+                break 
+        
+        if not found : 
+            print("Element with that key was not found in the HashMap")
+
+    def __getitem__(self, key) : 
+        idx = self.getHash(key)
+        for i,element in enumerate(self.arr[idx]) :
+            if(element[0]==key) :
+                return element
+
+print("\n\n Collision - Chaining HashMap Implementation")
+
+hm = HashMap()
+# print(hm.getHash('1-Mar'))
+# print(hm.getHash('2-Mar'))
+# print(hm.getHash('3-Mar'))
+# print(hm.getHash('4-Mar'))
+# print(hm.getHash('5-Mar'))
+# print(hm.getHash('6-Mar'))
+# print(hm.getHash('7-Mar'))
+print("9-Mar : ",hm.getHash('9-Mar'))
+print("10-Mar : ",hm.getHash('10-Mar'))     # Collision occurring here 
+
+hm['1-Mar'] = 100
+hm['2-Mar'] = 200
+hm['9-Mar'] = 300
+hm['10-Mar'] = 400
+
+# Seeing how the collision was handled
+for element in hm.arr : 
+    print(element)
+
+# getting the entries by their keys 
+print(hm['9-Mar'])
+print(hm['10-Mar'])
+
+# Deleting elements 
+del hm['10-Mar']
+for element in hm.arr : 
+    print(element)
