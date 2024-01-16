@@ -1,0 +1,105 @@
+# Queues in DSA (python) 
+---
+
+## Introduction
+- Queues are used in things like Producer-consumer problem where one entity is producing and consumer is consuming the info but their rates of doing so are not same.
+- In such a situation, we use a Queue in between these two so that there is no loss of data    
+- Queues pretty much work the exact same way as real life queues. Who is in front of the line will get teh service / chance first 
+![Image](./Notes%20Assets/queue.png)
+
+## Queues implementation in other languages 
+![Image](./Notes%20Assets/queues%20in%20other%20langs.png)
+
+--- 
+
+## Implementation of Queue in Python
+
+1. we can implement a simple **queue** using `list` in python
+```
+simpleQ = []
+
+# inserting elements 
+simpleQ.insert(0, 132)
+simpleQ.insert(0, 135)
+simpleQ.insert(0, 140)
+
+print(simpleQ)
+
+# popping elements 
+print(simpleQ.pop())
+print(simpleQ.pop())
+```
+- **NOTE** remember that `.insert(idx,data)` function of list is used to add _data_ into a specific _idx_ of the list. So when we _insert_ a new element into the queue, all the previous elements are pushed forward (towards the right) to make space for the new element. 
+- This way the list behaves like a queue using **FIFO**
+- But again , this implementation of queue will suffer from the same drawbacks of dynamic array (when they grow in size)
+- Hence this is not the recommended way of implementing queue in python
+- Instead we use `collection.deque()` to implement the Queue
+- Remember, `deque` DS in python is a doubly ended queue itself
+```
+from collections import deque
+queue = deque()
+
+queue.appendleft(132)   # appends to left of the deque (which is regarded as the back of the queue)
+queue.appendleft(135)
+queue.appendleft(140)
+
+print(queue)            # deque([140, 135, 132]) 
+
+queue.pop()             # 132
+queue.pop()             # 135
+```
+Read more about the collections module and deque DS in this [documentation](https://docs.python.org/3/library/collections.html#collections.deque)
+
+---
+
+## Implementation of Queue class for the OG function call fun : 
+```
+# Implementing Queue class for the OG function calls 
+class Queue : 
+    def __init__(self):
+        self.buffer = deque()
+    
+    def enqueue(self, data):
+        self.buffer.appendleft(data)
+        print("{} added into queue".format(data))
+    
+    def dequeue(self):
+        popped = self.buffer.pop()
+        print("{} exited queue".format(popped))
+        return popped
+    
+    def nextInLine(self):
+        return self.buffer[-1]
+    
+    def isEmpty(self):
+        return len(self.buffer)==0
+    
+    def size(self):
+        return len(self.buffer)
+    
+    def show(self):
+        print(self.buffer)
+
+Q = Queue()
+
+print(Q.isEmpty())
+
+Q.enqueue(1)
+Q.enqueue(2)
+Q.enqueue(3)
+Q.enqueue(4)
+
+Q.show()
+
+Q.dequeue()
+Q.dequeue()
+
+print("Next in line : ",Q.nextInLine())
+
+Q.show()
+```
+
+# The Various complexities of DS summarized in this image below : 
+![Image](https://www.bigocheatsheet.com/img/big-o-cheat-sheet-poster.png)
+
+More on this on this [website](https://www.bigocheatsheet.com/)
