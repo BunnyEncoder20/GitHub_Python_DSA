@@ -55,18 +55,16 @@ class BinarySearchTreeNode:
         return elements     # don't forget to return the elements array
     
     def find_min(self):
-        node = self 
-
-        while node.left: 
-            node = node.left
+        if self.left == None :
+            return self.data
         
-        return node.data
+        return self.left.find_min()
 
     def find_max(self):
-        node = self
-        while node.right: 
-            node = node.right
-        return node.data 
+        if(self.right == None):
+            return self.data
+
+        return self.right.find_max()
     
     def sum(self):
         sum = 0 
@@ -104,6 +102,43 @@ class BinarySearchTreeNode:
             elements += self.right.pre_order()
         
         return elements 
+
+    
+    def delete(self, node):
+        if (node < self.data) :
+            # node might be left subtree
+            if(self.left):
+                self.left = self.left.delete(node)
+        elif (node > self.data) :
+            if(self.right):
+                self.right = self.right.delete(node)
+        
+    
+        else : 
+        # if no child 
+            if self.left is None and self.right is None:
+                return None
+            
+        # if 1 child is present 
+            if self.left is None:
+                return self.right
+            if self.right is None:
+                return self.left
+            
+        # if 2 children are present (*rst = right sub Tree)
+            # minVal_rst = self.right.find_min()
+            # self.data = minVal_rst
+            # self.right = self.right.delete(minVal_rst)
+
+            maxVal_lst = self.left.find_max()
+            self.data = maxVal_lst
+            self.left = self.left.delete(maxVal_lst)
+        
+        return self
+
+
+
+
 
         
 
@@ -143,4 +178,6 @@ if __name__ == "__main__":
     # Post Order Traversal
     print("Post Order Traversal : ",numBST.post_order())
     
-    
+    #Deleting a TreeNode 
+    numBST.delete(23)
+    print("After Deleting 23: ", numBST.inOrderTraversal())
