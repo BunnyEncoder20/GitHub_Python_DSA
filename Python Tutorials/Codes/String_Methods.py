@@ -23,15 +23,15 @@ print("'12345' is digit ? ","12345".isdigit())
 print("All alphabets name? ",name.isalpha())       # prints false cause "Soma Senpai" has a space in between
 print("All alphabets 'bunny'? ","bunny".isalpha())
 
-# count() - returns the number od occurrences of a character in the string 
+# count() - returns the number of occurrences of a character in the string 
 print("Count of S in name : ",name.count("S"))
 
 # replace( "1st arg" , "2nd arg" ) - replaces first arg character with the 2nd arg character 
 print("Replace S with T in name : ",name.replace("S" , "T"));
+print(name)
 
 # Display a string multiple times: 
 print("Bunny"*3)
-
 
 # **********************************************************************
 # String Slicing in python 
