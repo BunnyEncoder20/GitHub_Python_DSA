@@ -21,7 +21,8 @@
 > - This it the **TRUE** meaning of immutable. The variables reference can be changed but the object in memory can't be changed in case of Immutable data types.
 > - When we are changing the value of a variable, we are actually just changing it's reference to a new object in memory.
 ---
-- This can also be seen in the below example:
+---
+1. This can also be seen in the below example as well:
 ```
 >>> x = 10
 >>> y = x
@@ -32,3 +33,20 @@
 (15, 10)
 >>>
 ```
+- We can see that the value of x is = 15 and y is = 10. Now we know why that is happening.
+- First python makes a new object in memory and keeps the value 10 in it and gives the reference to x.
+- Next y also gets the same reference to that object which has 10 in it.
+- Next when we assign x the value 15, it creates a new object with the value 15 in memory and gives x the new reference, while y is still reference the old object in memory.
+- Hence in the end, x = 15 and y = 10.
+
+2. The Immutable nature of these objects in memory can be easily seen when using strings : 
+```
+>>> username = "Soma"
+>>> username[0]
+'S'
+>>> username[0] = 'T'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'str' object does not support item assignment
+```
+- As predicted, we cannot change the immutable object in memory, only make a new reference to a new object.
