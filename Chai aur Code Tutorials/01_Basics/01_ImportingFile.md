@@ -16,7 +16,7 @@ sayHello("Soma Senpai")     # Hello Soma Senpai
 ---
 
 ## Inner Working (Behind the scenes of python)
-![Working of Python](image.png)
+![Working of Python](./Notes_Images/image.png)
 - When we execute a python file using:
 > python call_hello.py
 - The python code is converted into **byte code** (mostly hidden, normally we wouldn't get the pycache folder unless we import a file)
