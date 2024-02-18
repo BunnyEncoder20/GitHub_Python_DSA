@@ -3,9 +3,10 @@
 ---
 
 - Strings can be given in 
-  - single quotes `''` 
-  - double quotes `""`
-  - triple quotes `''' '''`
+    - `Single quotes`: ('allows embedded "double" quotes')
+    - `Double quotes`: ("allows embedded 'single' quotes")
+    - `Triple quoted`: ('''Three single quotes''', """Three double quotes""")
+
 
 - People tend to over complex slicing in strings. Basically
   - syntax : `string[start:stop:step]`
