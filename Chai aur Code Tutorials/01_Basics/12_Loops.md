@@ -191,6 +191,67 @@ False
 ```
 ---
 
+### Playing with Iterables 
+
+- we can iterate over dictionaries in many ways:
+```python
+>>> D = {'a':1,'b':2,'c':3}
+>>> for keys in D.keys() : 
+...     print(keys)          
+... 
+a
+b
+c
+```
+- We can also get it's `iter()` object and use the `next(iter_ref)` to loop over it.
+```python
+>>> I = iter(D)
+>>> I
+<dict_keyiterator object at 0x0000029869615AD0>
+>>> next(I)
+'a'
+>>> next(I)
+'b'
+>>> next(I)
+'c'
+>>> next(I)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+>>>
+```
+
+<br>
+
+
+- Remember `range()` is also an iterable object.
+- Eg: 
+```python 
+>>> range_ref = range(5)  
+>>> range_ref
+range(0, 5)
+>>> I = iter(range_ref)
+>>> I    
+<range_iterator object at 0x000002986935BB70>
+>>> next(I)
+0
+>>> next(I)
+1
+>>> next(I)
+2
+>>> next(I)
+3
+>>> next(I)
+4
+>>> next(I)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+>>>
+```
+
+---
+
 ## Practice Problems 
 
 ### Q1. Positive numbers 
