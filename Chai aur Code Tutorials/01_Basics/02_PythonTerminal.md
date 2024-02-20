@@ -4,8 +4,7 @@
 - The python terminal can be accessed by typing `python` in the command line.
 - This will enable the python shell.
 - This shell is used to quickly check what a line / command of python code does.
-- It can be exit by typing `exit() + ⏎`
-
+- It can be exit by typing `exit() + ⏎` or `ctrl+z` and `⏎`
 Common Commands seen : 
 ```
 import os

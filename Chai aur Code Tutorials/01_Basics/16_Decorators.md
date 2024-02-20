@@ -113,5 +113,4 @@ print(long_running_function(1,2))
 print(long_running_function(22,33))
 ```
 - Notice the blazing 🔥 fast speed of return of the second function call. 
-- Cause we had already sent the same arguments previously, our decorator was able to identify that it was a duplicate call and returned the cached value
-- instead of re-executing the function.
+- Cause we had already sent the same arguments previously, our decorator was able to identify that it was a duplicate call and returned the cached value instead of re-executing the function.
