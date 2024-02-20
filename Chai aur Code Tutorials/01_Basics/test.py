@@ -1,38 +1,22 @@
-class Car : 
-    def __init__(self, brand, model):
-        self.__brand = brand
-        self.__model = model
-        Car.total += 1
-    __brand = None
-    __model = None
-    total = 0
-    
-    def get_brand(self):
-        return self.__brand
-    
-    def get_fullname(self):
-        return f"{self.__brand} {self.__model}"
+import time 
 
-    @property
-    def model(self):
-        return self.__model
+def cache(func):
+    cached_values = {}
+    print("Cached: ",cached_values)
 
-class Battery:
-    def battery_func(self):
-        return "this is from battery class"
+    def wrapper(*args,**kwargs):
+        if args in cached_values:
+            return cached_values[args]
+        result = func(*args,**kwargs)
+        cached_values[args] = result
+        return result
+    return wrapper
 
-class Engine:
-    def engine_func(self):
-        return "this is from engine class"
+@cache
+def long_running_function(a,b):
+    time.sleep(4)   # simulating DB call
+    return a+b
 
-class ElectricCar(Car, Battery, Engine):
-    def __init__(self, brand, model, battery_size):
-        super().__init__(brand, model)
-        self.battery_size = battery_size
-    battery_size = None
-
-my_tesla = ElectricCar("Tesla", "Model S", "85kWh")
-print(my_tesla.battery_func())
-print(my_tesla.engine_func())
-print(my_tesla.get_fullname())
-
+print(long_running_function(1,2))
+print(long_running_function(1,2))
+print(long_running_function(22,33))
