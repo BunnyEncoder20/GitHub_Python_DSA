@@ -31,7 +31,7 @@ def update_video(videos):
     list_all_videos(videos)
     while True : 
         try:
-            index = int(input("Enter the index of the video you want to update: "))
+            index = int(input("Enter the ID of the video you want to update: "))
             if(1 <= index <= len(videos)):
                 break
             else:
@@ -51,7 +51,7 @@ def delete_video(videos):
     list_all_videos(videos)
     while True : 
         try:
-            index = int(input("Enter the index of the video you want to Delete: "))
+            index = int(input("Enter the ID of the video you want to Delete: "))
             if(1 <= index <= len(videos)):
                 break
             else:
