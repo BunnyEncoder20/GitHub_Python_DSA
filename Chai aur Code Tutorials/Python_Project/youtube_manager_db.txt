@@ -1,1 +1,1 @@
-[{"name": "Python Project - Youtube manager app", "time": "1:07:36"}]
+[{"name": "Youtube manager app", "time": "1:07:36"}]

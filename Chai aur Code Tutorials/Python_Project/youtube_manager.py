@@ -14,8 +14,12 @@ def save_data(videos):
         
 
 def list_all_videos(videos):
+    print()
+    print('*'*100)
     for index,video in enumerate(videos, start=1) : 
-        print(f"{index} {video}")
+        print(f"{index}. Title: {video['name']}\t Time: {video['time']}")
+    print()
+    print('*'*100)
 
 def add_video(videos):
     name = input("Enter the Video title: ")
@@ -38,7 +42,7 @@ def main():
         print("3. Update a Youtube video details 📝")
         print("4. Delete a Youtube video ❌")
         print("5. Exit the app 👋")
-        print(videos)
+        
         
         choice = input("Enter your choice : ")
         
