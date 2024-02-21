@@ -6,11 +6,15 @@ def list_all_videos(cursor):
 
     print('\n'); print('*'*70)
     for row in cursor.fetchall():
-        print(row)
+        print(f"ID:{row[0]} |\t Title: {row[1]}\t Time: {row[2]}")
     print('\n'); print('*'*70)
 
-def add_video():
-    pass
+def add_video(cursor, conn):
+    name = input("Enter the Video title: ")
+    time = input("Enter the Video time: ")
+            
+    cursor.execute("INSERT INTO videos (name, time) VALUES (? , ?)",(name, time))
+    conn.commit()     # in SQLite we use the commit() method to save our changes to the db
 
 def update_video():
     pass
@@ -48,11 +52,11 @@ def main():
             case '1' : 
                 list_all_videos(cursor)
             case '2' : 
-                add_video()
+                add_video(cursor, conn)
             case '3' :
-                update_video()
+                update_video(cursor, conn)
             case '4' :
-                delete_video()
+                delete_video(cursor, conn)
             case '5' : 
                 break    # to come out of the while True loop
             case _ : print("❕ Invalid choice, enter a Number between 1-5")
