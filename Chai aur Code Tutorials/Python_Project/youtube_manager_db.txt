@@ -1,1 +1,1 @@
-[{"name": "Youtube manager app", "time": "1:07:36"}]
+[{"name": "Youtube manager app", "time": "1:07:36"}, {"name": "Objects in depth in JS", "time": "18 mins"}]
