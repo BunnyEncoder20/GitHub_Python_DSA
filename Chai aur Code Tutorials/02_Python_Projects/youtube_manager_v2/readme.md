@@ -3,7 +3,7 @@
 ## Description
 - This version of the Youtube Manager runs in the terminal 
 - Deals with all the `CRUD` operations
-- Saves the data to a SQLite3 (SQL database) in JSON format
+- Saves the data to a SQLite3 (SQL database)
 
 ### SQLite3
 
