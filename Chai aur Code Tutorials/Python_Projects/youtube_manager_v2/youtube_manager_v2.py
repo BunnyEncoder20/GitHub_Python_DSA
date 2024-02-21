@@ -4,10 +4,10 @@ import sqlite3
 def list_all_videos(cursor):
     cursor.execute('SELECT * FROM videos')
 
-    print('\n'); print('*'*70)
+    print(); print('*'*70)
     for row in cursor.fetchall():
         print(f"ID:{row[0]} |\t Title: {row[1]}\t Time: {row[2]}")
-    print('\n'); print('*'*70)
+    print('*'*70)
 
 def add_video(cursor, conn):
     name = input("Enter the Video title: ")
@@ -16,10 +16,26 @@ def add_video(cursor, conn):
     cursor.execute("INSERT INTO videos (name, time) VALUES (? , ?)",(name, time))
     conn.commit()     # in SQLite we use the commit() method to save our changes to the db
 
-def update_video():
-    pass
+def update_video(cursor, conn):
+    list_all_videos(cursor)
+    cursor.execute('SELECT * FROM videos')
+    while True : 
+        try:
+            index = int(input("Enter the index of the video you want to update: "))
+            if(1 <= index <= len(cursor.fetchall())):
+                break
+            else:
+                raise ValueError
+        except ValueError:
+            print("❗ Please Enter a valid index\n")
+    new_name = input("Enter the new Title : ")
+    new_time = input("Enter new time : ")
+    
+    # Notice that we do not do index-1 here cause the indexing of the DB rows starts from 1
+    cursor.execute("UPDATE videos SET name = ?, time = ? WHERE id = ?",(new_name, new_time, index))
+    conn.commit()     # remember that commit is a function of teh connection object and not the cursor object
 
-def delete_video():
+def delete_video(cursor, conn):
     pass
 
 

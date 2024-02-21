@@ -18,7 +18,6 @@ def list_all_videos(videos):
     print('*'*70)
     for index,video in enumerate(videos, start=1) : 
         print(f"ID: {index} | Title: {video['name']}\t Time: {video['time']}")
-    print()
     print('*'*70)
 
 def add_video(videos):
