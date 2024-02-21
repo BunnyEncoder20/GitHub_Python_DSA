@@ -26,7 +26,7 @@ def add_video(videos):
     time = input("Enter the Video time: ")
     videos.append({'name':name, 'time':time})
     save_data(videos)
-    print("✅ Video added to list successfully")
+    print(f"✅ {name} video added to list successfully")
 
 def update_video(videos):
     list_all_videos(videos)
@@ -44,12 +44,26 @@ def update_video(videos):
     new_time = input("Enter new time: ")
     videos[index-1] = {'name':new_name, 'time':new_time} #[index-1] cause enumerate displays the indexes starting from 1 but we know that indexing in python starts from 0
     save_data(videos)
-    print("✅ Video list updated successfully")
+    print(f"✅ ID{index} video details updated successfully")
     
         
 
 def delete_video(videos):
-    pass
+    list_all_videos(videos)
+    while True : 
+        try:
+            index = int(input("Enter the index of the video you want to Delete: "))
+            if(1 <= index <= len(videos)):
+                break
+            else:
+                raise ValueError
+        except ValueError:
+            print("❗ Please Enter a valid index\n")
+    
+    del videos[index-1]
+    save_data(videos)
+    print(f"✅ ID{index} video deleted successfully")
+    
 
 def main():
     videos = load_data()
