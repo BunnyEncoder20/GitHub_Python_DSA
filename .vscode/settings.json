@@ -5,6 +5,7 @@
         "deque",
         "dotenv",
         "pymongo",
+        "Quasilinear",
         "squarerooot"
     ]
 }
