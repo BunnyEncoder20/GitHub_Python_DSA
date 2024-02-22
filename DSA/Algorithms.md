@@ -78,5 +78,57 @@ Logarithmic Time is also called sub-linear because it takes less time to calcula
 ## ALgorithms in Code
 
 ### Linear Search 
+```python 
+def linear_search(list , target):
+    for index,num in enumerate(list) :
+        if num == target :
+            return index
+    return False
 
+if __name__ == '__main__' : 
+    list = [1,4,2,3,5,6,8,7,9.10]
+    target = 12
+    result = linear_search(list , target)
+    if result : 
+        print(f"{target} was found at index:{result}")
+    else :
+        print("The element was not found in the list")
+```
 
+### Binary Search 
+```python 
+def binary_search(list, target):
+    first = 0
+    last = len(list) - 1
+    
+    while first<=last :                 # remember that at the end of the search , we will have first = last 
+        midpoint = (first+last)//2      # floor division 
+        if list[midpoint] == target :
+            return midpoint
+        elif list[midpoint]<target : 
+            first = midpoint + 1
+        elif list[midpoint]>target :
+            last = midpoint - 1
+    return False
+
+if __name__ == '__main__' : 
+    list = [x+1 for x in range(21)]
+    target = 5
+    res = binary_search(list , target)
+    if res : 
+        print(f"{target} was found at index:{res}")
+    else : 
+        print('The element was not found in the list')
+```
+
+## Recursion & Space Complexity 
+
+- a recursive function is a function which calls itself when executing 
+- Binary search can be done recursively where the function calls itself with half a list of numbers and 
+  
+<br>
+
+- Another way of defining the efficiency of a algorithm is by looking at it's **`space complexity`** 
+- `Space Complexity` is the measure of how much additional storage will the algorithm require as teh size of input increases 
+- The `space complexity` of the iterative Binary Search is `O(1)` (Constant time). 
+- The `space complexity of the recursive Binary Search is `O(log n)` (Logarithmic time).
