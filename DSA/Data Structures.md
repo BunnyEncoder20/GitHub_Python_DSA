@@ -21,6 +21,20 @@
 ## Static vs Dynamic Arrays 
 
 - A static array is a fixed length container containing n elements indexable from the range [0, n - 1].
+- Usually , we will be looking at the following operations in a DS to study it's performance:
+
+| **Operation** 	| **Static Array** 	| **Dynamic Array** 	|
+|:-------------:	|:----------------:	|:-----------------:	|
+|     Access    	|       O(1)       	|        O(1)       	|
+|   Searching   	|       O(n)       	|        O(n)       	|
+|   Insertion   	|        N/A       	|        O(n)       	|
+|   Appending   	|        N/A       	|        O(1)       	|
+|    Deletion   	|        N/A       	|        O(n)       	|
+
+<br>
+
+- Dynamic Arrays can grow and shrink in size as needed. 
+
 
 ## 1. Lists (Arrays)
 
