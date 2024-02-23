@@ -2,21 +2,33 @@
 
 ---
 
+## Complexity Analysis 
+- As programmers, we will often ask 2 main questions : 
+    1. How much **`TIME`** does this algorithm need to finish ? 
+    2. How much **`SPACE`** does this algorithm need for this computation?
+
+
 ## Big O Notation
 
-- Big O notation is used to describe the time complexity of an algorithm.
+- `Big O` notation is used to describe the time complexity of an algorithm.
+- `Big-O` give an upper bound of the complexity in the **worst case**, helping to quantify performance as the input size becomes arbitrarily large.
 
-1. O(n) - Linear Time
-2. O(Log n) - Logarithmic Time
-3. O(1) - Constant time 
-4. O(n<sup>2</sup>) - Quadratic Time
-5. O(n<sup>3</sup>) - Cubic Time
+| Complexity           	| Big O Notation   	|
+|----------------------	|------------------	|
+| Constant Time        	| O(1)             	|
+| Logarithmic Time     	| O(log(n))        	|
+| Linear Time          	| O(n)             	|
+| Linear arithmic Time 	| O(n log(n))      	|
+| Quadratic Time       	| O(n<sup>2</sup>)  	|
+| Cubic Time           	| O(n<sup>2</sup>) 	|
+| Exponential Time     	| O(x<sup>n</sup>) 	|
+| Factorial Time       	| O(n!)            	|
 
 Logarithmic Time is also called sub-linear because it takes less time to calculate than linear time. (The graph line is lower than the linear line)
 
-![alt text](image.png)
+![alt text](./Images/image.png)
 
-![alt text](image.png)
+![alt text](./Images/image1.png)
 
 - We know that `binary search` is better than linear search so why don't we always use `Binary Search` ?
 - This is because there was a additional step in the BS algorithm - **sorting the array**.
@@ -32,7 +44,7 @@ Logarithmic Time is also called sub-linear because it takes less time to calcula
 - Similarly for `cubic` run times we have to deal with each element of a 3D matrix or array.
 - They look something like this on the graph:
 
-![alt text](image-1.png)
+![alt text](./Images/image-1.png)
 
 - `Quasilinear` run time is denoted by `O(n log n)`
 - `O(n log n)` means for every value of input we are going to execute log n operations, hence the run time is `O(n log n)`
@@ -59,10 +71,10 @@ Logarithmic Time is also called sub-linear because it takes less time to calcula
 - We mostly avoid using such algorithms in practice.
 - Brute force algorithms for searching and sorting have exponential run times.
 - Eg: Brute forcing a password to a website will take exponential time.: 
-![alt text](image3.png)
+![alt text](./Images/image3.png)
 - With just 2 character we see that the number of operations will be 69<sup>2</sup> (69 is the number so characters allowed in passwords: english alphabets, numbers, special symbols, etc)
 - Most websites have a password length of 20 characters which would take : 
-![alt text](image4.png)
+![alt text](./Images/image4.png)
 
 <br>
 
@@ -71,7 +83,7 @@ Logarithmic Time is also called sub-linear because it takes less time to calcula
 - The number of paths for 3 cities = 3! = 6
 - The number of paths for 4 cities = 4! = 24
 - This is called a factorial or combinatorial run time 
-![alt text](image5.png)
+![alt text](./Images/image5.png)
 
 ---
 
