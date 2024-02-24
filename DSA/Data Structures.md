@@ -4,6 +4,7 @@
 - They are essential ingredients in creating fast and powerful algorithms.
 - They make code cleaner and easier to understand. 
 - They can be the difference between a good and an excellent project (SDE)
+- [Python Docs DS](https://docs.python.org/3.9/tutorial/datastructures.html?highlight=lists)
 
 ## Abstract Data Types 
 
