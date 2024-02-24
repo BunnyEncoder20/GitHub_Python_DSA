@@ -79,3 +79,7 @@ pip list > requirement.txt
 ```
 pip install -r requirements.txt
 ``` 
+- You can also uninstall packages like normal : 
+```
+pip uninstall pymongo
+```
