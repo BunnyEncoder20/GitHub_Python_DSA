@@ -48,7 +48,7 @@ def nForest(n:int) ->None:
 
 ---
 
-### 2. Triangle Pattern 
+### 2. Right Triangle Pattern 
 
 **Problem Statement:** Sam is making a forest visualizer. An N-dimensional forest is represented by the pattern of size NxN filled with ‘*’.
 
@@ -77,7 +77,7 @@ def nForest(n:int) ->None:
         print('* '*(i+1))
 ```
 
-### 3. Number Triangle Pattern
+### 3. Number Right Triangle Pattern
 
 >- **Problem Statement:** Sam is making a Triangular painting for a maths project.
 >- An N-dimensional Triangle is represented by the lower triangle of the pattern filled with integers starting from 1.
@@ -97,4 +97,56 @@ def nTriangle(n:int) ->None:
         for j in range(i+1):
             print(f"{j+1}",end=' ')
         print()
+```
+---
+
+### 4. Row Number Right Triangle 
+
+- **Pattern**
+```
+Input: ‘N’ = 3
+
+Output: 
+1
+2 2 
+3 3 3
+```
+- **Code**
+```python 
+def triangle( n:int) ->None:
+    for i in range(n):
+        for j in range(i+1):
+            print(i+1,end=' ')
+        print()
+```
+
+--- 
+
+### 5. Inverted Right Triangle
+
+- **Pattern**
+```
+Input: ‘N’ = 3
+
+Output: 
+* * *
+* *
+*
+```
+- **Code**
+```python
+def seeding(n: int) -> None:
+    while n>0 :
+        for j in range(n):
+            print("*",end=' ')
+        print()
+        n-=1
+```
+```python 
+def seeding(n: int) -> None:
+    for i in range(n,0,-1):
+        for j in range(n):
+            print("*",end=' ')
+        print()
+        n-=1
 ```
