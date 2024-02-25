@@ -328,3 +328,135 @@ def nStarTriangle(n: int) -> None:
         
 ```
 
+### 11. Binary Right Triangle
+
+- **Pattern**
+```
+Input: 3
+
+Output:
+1 
+0 1 
+1 0 1
+```
+- **Code**
+```python 
+def nBinaryTriangle(n: int) -> None:
+    
+    for i in range(n):
+        binaryOdd = 0
+        binaryEven = 1
+        for j in range(i+1):
+            if i%2==0:
+                print(binaryEven,end=' ')
+                binaryEven = 0 if binaryEven else 1
+            else:
+                print(binaryOdd,end=' ')
+                binaryOdd = 0 if binaryOdd else 1
+        print()
+```
+
+### 12. Number Mirrored Crown
+
+- **Pattern**
+```
+Input: ‘N’ = 3
+
+Output: 
+1         1
+1 2     2 1
+1 2 3 3 2 1
+```
+- **Code:**
+```python 
+def numberCrown(n: int) -> None:
+    spaces = (n*2)-2
+    for i in range(n):
+        num=1
+        for j in range(i+1):
+            print(num,end=' ')
+            num+=1
+        for j in range(spaces*2):   # x2 to accomodate the spaces created by the prints() in the above and below loop
+            print(' ',end='')
+        for j in range(i+1):
+            num-=1
+            print(num,end=' ')
+        print()
+        spaces-=2
+```
+
+---
+
+### 13. Increasing Number Right Triangle
+
+- **Pattern**
+```
+Input: ‘N’ = 3
+
+Output: 
+
+1
+2 3
+4 5 6
+```
+- **Code**
+```python
+def nNumberTriangle(n: int) -> None:
+    num=1
+    for i in range(n):
+        for j in range(i+1):
+            print(num,end=' ')
+            num+=1
+        print()
+```
+
+---
+
+### 14. Increasing Letter Triangle
+
+- **Pattern**
+```
+Input: ‘N’ = 3
+
+Output: 
+A
+A B
+A B C
+```
+- **Code**
+```python 
+def nLetterTriangle(n: int) -> None:
+    #chr() returns the  Unicode character of one number
+    # A-Z = 65-90
+    for i in range(n):
+        for j in range(65,65+i+1):
+            print(chr(j),end=' ')
+        print()
+```
+
+--- 
+
+### 15. Increasing Letter Inverted Right Triangle
+
+- **Pattern**
+```
+Input: ‘N’ = 3
+
+Output: 
+
+A B C
+A B
+A
+```
+- **Code**
+```python
+def nLetterTriangle(n: int):
+    # chr() returns Unicode character of one number
+    # A-Z = 65-90
+    char = n
+    for i in range(n):
+        for j in range(65,65+char):
+            print(chr(j),end=' ')
+        print() 
+        char-=1
+```
