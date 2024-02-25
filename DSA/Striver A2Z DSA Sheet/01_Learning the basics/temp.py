@@ -1,18 +1,12 @@
-def numberCrown(n: int) -> None:
-    spaces = (n*2)-2
-    for i in range(n):
-        num=1
-        for j in range(i+1):
-            print(num,end=' ')
-            num+=1
-        for j in range(spaces*2):
-            print(' ',end='')
-        for j in range(i+1):
-            num-=1
-            print(num,end=' ')
+def symmetry(n: int):
+    
+    for i in range(n*2-1):
+        for j in range(n*2-1):
+            top_distance = i
+            bottom_distance = (n*2-2)-i
+            left_distance = j
+            right_distance = (n*2-2)-j
+            print(n - min(top_distance, bottom_distance, left_distance, right_distance), end=" ")
         print()
-        spaces-=2
-
-        
 if __name__ == '__main__':
-    numberCrown(3)
+    symmetry(4)

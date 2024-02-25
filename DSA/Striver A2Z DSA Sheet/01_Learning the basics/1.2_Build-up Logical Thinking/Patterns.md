@@ -460,3 +460,248 @@ def nLetterTriangle(n: int):
         print() 
         char-=1
 ```
+
+---
+
+### 16. Level Letter Right Triangle
+
+- **Pattern**
+```
+Input: ‘N’ = 3
+
+Output: 
+A
+B B
+C C C
+```
+- **Code**
+```python
+def alphaRamp(n: int) -> None:
+    char = 65
+    for i in range(n):
+        for j in range(i+1):
+            print(chr(char),end=' ')
+        print()
+        char+=1
+```
+
+---
+
+### 17. Letter Pyramid
+
+- **Pattern**
+```
+Input: ‘N’ = 3
+
+Output: 
+    A
+  A B A
+A B C B A
+```
+- **Code**
+```python
+def alphaHill(n: int):
+    bracket = 1
+    spaces = n-1
+    
+    for i in range(n):
+        letter = 64
+        for j in range(spaces):
+            print(' ',end=' ')
+        for j in range(bracket):
+            if(j <= bracket//2):
+                letter+=1
+                print(chr(letter),end=' ')
+            else:
+                letter-=1
+                print(chr(letter),end=' ')
+        print()
+        spaces-=1
+        bracket+=2
+```
+
+---
+
+### 18. Bottom Letter starting Letter Right Triangle
+
+- **Pattern**
+```
+Input: ‘N’ = 3
+
+Output: 
+C
+C B 
+C B A
+```
+- **Code**
+```python
+def alphaTriangle(n: int):
+    
+    for i in range(n):
+        letter = 65+(n-1)
+        for j in range(i+1):
+            print(chr(letter),end=' ')
+            letter-=1
+        print()
+```
+
+---
+
+### 19. Symmetric Diamond Void
+
+- **Pattern**
+```
+Input: ‘N’ = 3
+
+Output: 
+* * * * * * 
+* *     * * 
+*         * 
+*         * 
+* *     * * 
+* * * * * * 
+```
+- **Code**
+```python
+def symmetry(n: int):
+
+    # for the Upper Inverted Crown
+    spaces = 0
+    stars = n
+    for i in range(n):
+        for star in range(stars):
+            print('*',end=' ')
+        for space in range(spaces):
+            print(' ',end=' ')
+        for star in range(stars):
+            print('*',end=' ')
+        print()
+        stars-=1
+        spaces+=2
+    
+    # For the lower crown
+    spaces = (n*2)-2
+    stars = 1
+    for i in range(n):
+        for star in range(stars):
+            print('*',end=' ')
+        for space in range(spaces):
+            print(' ',end=' ')
+        for star in range(stars):
+            print('*',end=' ')
+        print()
+        stars+=1
+        spaces-=2
+```
+
+---
+
+### 20. Symmetric BowTie
+
+- **Pattern**
+```
+Input: ‘N’ = 3
+
+Output: 
+*         *
+* *     * *
+* * * * * *
+* *     * *
+*         *
+```
+- **Code**
+```python
+def symmetry(n: int):
+    stars = 1
+    spaces = (n*2)-2
+    for i in range(n):
+        for j in range(stars):
+            print('*',end=' ')
+        for j in range(spaces):
+            print(' ',end=' ')
+        for j in range(stars):
+            print('*',end=' ')
+        print() 
+        if i<n-1 :
+            stars+=1
+            spaces-=2
+            
+    for i in range(n-1):
+        stars-=1
+        spaces+=2
+        for j in range(stars):
+            print('*',end=' ')
+        for j in range(spaces):
+            print(' ',end=' ')
+        for j in range(stars):
+            print('*',end=' ')
+        print()
+```
+
+---
+
+### 21. Rectangle Border of N rows
+
+- **Pattern**
+```
+Input: ‘N’ = 4
+
+Output: 
+
+****
+*  *
+*  *
+****
+```
+- **Code**
+```python
+def getStarPattern(n: int) -> None:
+    for i in range(n):
+        if (i==0 or i==(n-1)):
+            print('*'*n)
+        else :
+            print('*',end='')
+            print(' '*(n-2),end='')
+            print('*')
+```
+
+---
+
+### 22. Number Matrix (decreeing Numeber towards center)
+
+- **Pattern**
+```
+Input: ‘N’ = 4
+
+Output: 
+
+4444444
+4333334
+4322234
+4321234
+4322234
+4333334
+4444444
+```
+>- The **trick** is that the required matrix can be made by doing ( n - minimum distance from edges)
+>- **Eg:** we know that the number 1 in above example has a distance of 3 from the top,right,bottom,left edges.
+>- These distances can be easily calculated from the indexes of the matrix. 
+>- In the same example the 2 to the right of 1 will have the following distances from the edges:
+>   - top = 3
+>   - right = 2
+>   - bottom = 3
+>   - left = 4
+>- Hence min(top,right,bottom,left) = 2 
+>- Hence the required matrix can be made by doing ( n - 2) = (4-2) = 2
+- **Code**
+```python
+def getNumberPattern(n: int) -> None:
+    for i in range(n*2-1):
+        for j in range(n*2-1):
+            top_distance = i
+            bottom_distance = (n*2-2)-i
+            left_distance = j
+            right_distance = (n*2-2)-j
+            print(n - min(top_distance, bottom_distance, left_distance, right_distance), end="")
+        print()
+```
