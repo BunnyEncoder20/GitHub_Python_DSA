@@ -150,3 +150,181 @@ def seeding(n: int) -> None:
         print()
         n-=1
 ```
+
+---
+
+### 6. Inverted Right Number Triangle
+
+- **Pattern**
+```
+Input: ‘N’ = 3
+
+Output: 
+1 2 3
+1 2
+1
+```
+- **Code**
+```python 
+def nNumberTriangle(n: int) -> None:
+    for i in range(n,0,-1):
+        for j in range(i):
+            print(j+1,end=' ')
+        print()
+```
+
+---
+
+### 7. Star Pyramid 
+
+- **Pattern**
+```
+Input: ‘N’ = 3
+
+Output: 
+  *
+ ***
+*****
+```
+- **Code**
+```python
+def nStarTriangle(n: int) -> None:
+    spaces = n-1
+    stars = 1
+    for i in range(n):
+        for s in range(spaces):
+            print('',end=' ')
+        for j in range(stars):
+            print('*',end='')
+        print()
+        spaces-=1 
+        stars+=2
+```
+
+--- 
+
+### 8. Inverted Star Pyramid 
+
+- **Pattern**
+```
+Input: ‘N’ = 3
+
+Output: 
+*****
+ ***
+  *
+```
+- **Code**
+```python
+def nStarTriangle(n: int) -> None:
+    spaces = 0
+    stars = (2*n)-1
+    for i in range(n):    
+        for j in range(spaces):
+            print(' ',end='')
+        for j in range(stars):
+            print('*',end='')
+        spaces += 1
+        stars -= 2
+        print() 
+```
+
+---
+
+### 9. Star Diamond 
+
+- **Pattern**
+```
+Input: ‘N’ = 3
+
+Output: 
+
+  *
+ ***
+*****
+*****
+ ***
+  *
+```
+- **Code**
+```python
+def nStarDiamond(n: int) -> None:
+    spaces = n-1
+    stars = 1
+
+    for i in range(n*2):
+        for j in range(spaces):
+            print(' ',end='')
+        for j in range(stars):
+            print('*',end='')
+        print()
+        if(i<=n//2):
+            spaces-=1
+            stars+=2
+        else:
+            spaces+=1
+            stars-=2
+
+        
+if __name__ == '__main__':
+    nStarDiamond(4)
+```
+- (Kinda imperfect cause 2 middle rows, but that is how the CodingNinja question was...)
+- I just smashed the Upper pyramid and inverted pyramid together
+```python 
+def nStarDiamond(n: int) -> None:
+    spaces = n-1
+    stars = 1
+
+    for i in range(n):
+        for j in range(spaces):
+            print(' ',end='')
+        for j in range(stars):
+            print('*',end='')
+        print()
+        spaces-=1
+        stars+=2
+    
+    spaces = 0
+    stars = (2*n)-1
+
+    for i in range(n):
+        for j in range(spaces):
+            print(' ',end='')
+        for j in range(stars):
+            print('*',end='')
+        print() 
+        spaces+=1
+        stars-=2
+```
+
+---
+
+### 10. Perfect Right Diamond
+
+- **Pattern**
+```
+Input: ‘N’ = 3
+
+Output: 
+*
+**
+***
+**
+*
+```
+- **Code**
+```python 
+def nStarTriangle(n: int) -> None:
+    
+    for i in range(n):
+        for j in range(i+1):
+            print("*",end='')
+        print()
+    for i in range(n-1,0,-1):
+        for j in range(i):
+            print('*',end='')
+        print()
+        
+```
+

@@ -1,8 +1,20 @@
-def nTriangle(n:int) ->None:
-    for i in range(n):
-        for j in range(i+1):
-            print(f"{j+1}",end=' ')
+def nStarDiamond(n: int) -> None:
+    spaces = n-1
+    stars = 1
+
+    for i in range(n*2):
+        for j in range(spaces):
+            print(' ',end='')
+        for j in range(stars):
+            print('*',end='')
         print()
+        if(i<=n//2):
+            spaces-=1
+            stars+=2
+        else:
+            spaces+=1
+            stars-=2
+
         
 if __name__ == '__main__':
-    nTriangle(3)
+    nStarDiamond(4)
