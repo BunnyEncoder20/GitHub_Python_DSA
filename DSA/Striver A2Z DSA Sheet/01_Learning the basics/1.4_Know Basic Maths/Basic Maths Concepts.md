@@ -164,7 +164,7 @@ class Solution:
 
 ---
 
-### 4. Armstrong Numbers - [LeetCode](https://www.codingninjas.com/studio/problems/check-armstrong_589?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf)
+### 4. Armstrong Numbers - [CodingNinjas](https://www.codingninjas.com/studio/problems/check-armstrong_589?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf)
 
 - **Problem Statement:** 
 
@@ -201,7 +201,7 @@ else:
 
 ---
 
-### 5. Divisors - [LeetCode](https://www.codingninjas.com/studio/problems/sum-of-all-divisors_8360720)
+### 5. Divisors - [CodingNinjas](https://www.codingninjas.com/studio/problems/sum-of-all-divisors_8360720)
 
 >- **Problem Statement:** You are given an integer ‘n’. Function ‘sumOfDivisors(n)’ is defined as the sum of all divisors of ‘n’. Find the sum of ‘sumOfDivisors(i)’ for all ‘i’ from 1 to ‘n’.
 
@@ -268,3 +268,47 @@ def sumOfAllDivisors(n: int) -> int:
 
 ---
 
+### 6. Prime Number Check - [CodingNinjas](https://www.codingninjas.com/studio/problems/check-prime_624934)
+
+- **Prime Number = Number which has exactly 2 factors : 1 and itself**
+> **Problem Statement** 
+> A prime number is a positive integer that is divisible by exactly 2 integers, 1 and the number itself.
+>You are given a number 'n'.
+>Find out whether 'n' is prime or not. 
+  
+- **Examples**
+```
+Input: 'n' = 5
+Output: YES
+
+Explanation: 5 is only divisible by 1 and 5. 2, 3 and 4 do not divide 5.
+```
+
+- **Solutions 1 - Brute Force**
+```python 
+def primeCheck(n:int) -> bool :
+    factors = 0
+    for i in range(1,n+1):
+        if n%i == 0:
+            factors+=1
+    return True if factors==2 else False
+```
+- `Time Complexity:` **O(n)**
+- As we same in our previous Question, we can calculate the factors of a number in O(sqrt(n)) time.
+
+- **Solution 2 - Checking in O(sqrt(n)) Time**
+```python
+from math import sqrt
+def primeCheck(n:int) -> bool :
+    factors = 0
+    for i in range(1,int(sqrt(n))+1):
+        if n%i == 0:
+            factors+=1
+            if i!=n/i:
+                factors+=1
+    return "YES" if factors==2 else "NO"
+
+if __name__ == '__main__':
+    n = int(input())
+    print(primeCheck(n))
+```
