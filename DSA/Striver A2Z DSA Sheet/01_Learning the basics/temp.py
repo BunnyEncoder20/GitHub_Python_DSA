@@ -1,12 +1,16 @@
 from math import sqrt
-def calcGCD(n:int, m:int)->int:
-    while n>0 and m>0:
-        if n>m:
-            n = n%m
+import collections
+def hash(arr:list)->list:
+    hashed = {}
+    for char in arr:
+        if char in hashed:
+            hashed[char]+=1
         else :
-            m = m%n
-    return max(n,m)     # because one of them will be zero, we return the max directly as that will be GCD
-    
+            hashed[char] = 1
+    return hashed
 
 if __name__ == '__main__':
-    print(calcGCD(20,15))
+    hashedArray = hash(['a','g','a','d','r','y'])
+    for key in hashedArray:
+        print(f"{key} : {hashedArray[key]}")
+    
