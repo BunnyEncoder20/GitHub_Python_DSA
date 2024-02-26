@@ -164,7 +164,7 @@ class Solution:
 
 ---
 
-### 4. Armstrong Numbers 
+### 4. Armstrong Numbers - [LeetCode](https://www.codingninjas.com/studio/problems/check-armstrong_589?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf)
 
 - **Problem Statement:** 
 
@@ -198,3 +198,73 @@ if sum==originalNum:
 else:
     print("false")
 ```
+
+---
+
+### 5. Divisors - [LeetCode](https://www.codingninjas.com/studio/problems/sum-of-all-divisors_8360720)
+
+>- **Problem Statement:** You are given an integer ‘n’. Function ‘sumOfDivisors(n)’ is defined as the sum of all divisors of ‘n’. Find the sum of ‘sumOfDivisors(i)’ for all ‘i’ from 1 to ‘n’.
+
+- **Example:**
+```
+Input: ‘n’  = 5
+Output: 21
+
+Explanation:
+We need to find the sum of ‘sumOfDivisors(i)’ for all ‘i’ from 1 to 5. 
+‘sumOfDivisors(1)’ = 1
+‘sumOfDivisors(2)’ = 2 + 1 = 3
+‘sumOfDivisors(3)’ = 3 + 1 = 4
+‘sumOfDivisors(4)’ = 4 + 2 +1 = 7 
+‘sumOfDivisors(5)’ = 5 + 1 = 6
+Therefore our answer is sumOfDivisors(1) + sumOfDivisors(2) + sumOfDivisors(3) + sumOfDivisors(4) + sumOfDivisors(5) = 1 + 3 + 4 + 7 + 6 = 21.
+```
+- **Solution**
+```python
+def sumOfAllDivisors(n: int) -> int:
+    sumOfAll = 0
+
+    for i in range(1,n+1):
+        sumOfOne = 0
+        if i == 1: 
+            sumOfAll += 1
+            continue 
+        
+        for j in range(1,i+1):
+            if i%j==0:
+                sumOfOne += j
+                
+        sumOfAll += sumOfOne
+    
+    return sumOfAll
+```
+- `Time Complexity` : **O(n<sup>2</sup>)**
+- For better time complexly, we need to make some mathematical observations: 
+  - Divisors are always in pairs 
+  - Eg: 36 Factors include : 
+    - 1 & 36 (36/1)
+    - 2 & 18 (36/2)
+    - 3 & 12 (36/3)
+    - 4 & 9 (36/4)
+    - 6 & 6 (36/6)
+  - By this we have covered all of the factors
+  - So we can potentially get all the divisors of `n` in a loop only till `sqrt(n)`
+
+- **Solution 2**
+```python
+from math import sqrt
+def sumOfAllDivisors(n: int) -> int:
+    sumOfAll = 0
+    for i in range(1, n + 1):
+        for j in range(1, int(sqrt(i))+1):
+            if i % j == 0 :
+                sumOfAll += j
+                if i/j != j:
+                    sumOfAll += int(i/j)
+            
+    return sumOfAll
+```
+- `Time Complexity` : **O(sqrt(n))** (only for calculating the factors of the numbers)
+
+---
+
