@@ -312,3 +312,54 @@ if __name__ == '__main__':
     n = int(input())
     print(primeCheck(n))
 ```
+
+---
+
+### 7. GCD / HCF - [CodingNinjas](https://www.codingninjas.com/studio/problems/hcf-and-lcm_840448)
+
+- `Greatest Common Divisor (GCD)` : The largest common divisor which divides both the numbers (can be one of them also)
+- `Highest Common Factor (HCF)` : The same thing as GCD
+- **NOTE:** Factors are the numbers which divide the given number and leaves no remainders. Divisors are numbers which can divide the given number. Hence all the Factors are divisors but not all divisors are factors 
+
+- **Examples**
+```
+Example:
+
+Input: 'n' = 6, 'm' = 4
+Output: 2
+
+Explanation:
+Here, gcd(4,6) = 2, because 2 is the largest positive integer that divides both 4 and 6.
+```
+
+- **Solutions 1 : Brute Force**
+```python 
+def calcGCD(n:int, m:int)->int:
+    gcd = 1 
+    for i in range(2,min(n,m)):
+        if n%i==0 and m%i==0:
+            gcd = i
+    return gcd
+```
+- `Time Complexity`: **O(min(n,m))**
+- We can also use the **"Euclidean Algorithm"** which will take much lesser time 
+>>- **Euclidean Algorithm stats that:**
+>> GCD(n,m) = GCD(n-m,m) where n>m
+>>- Hence we keep applying the above substraction till one of the numbers becomes 0. Then the other remaining number is the GCD of the original pair
+>>- **Eg:** (20,15)
+>> (20,15) >> (20-15,15) >> (5,15) >> (5,15-5) >> (5,10) >> (5,10-5) >> (5,5) >> (0,5) >> **GCD(20,15) = 5**
+>>- We can by pass all the subtraction steps by directly applying **%** to get the remainder at the end.
+>>- Hence the Algo in a better formula would be 
+>> GCD(n,m) = GCD(n%m,m) , where n>m till one of em = 0, the other will be GCD
+
+- **Solution 2 : Euclidean Algorithm**
+```python
+def calcGCD(n:int, m:int)->int:
+    while n>0 and m>0:
+        if n>m:
+            n = n%m
+        else :
+            m = m%n
+    return max(n,m)     # because one of them will be zero, we return the max directly as that will be GCD
+```
+- `Time Complexity`: **O(Log<sub>n</sub>min(n,m))**
