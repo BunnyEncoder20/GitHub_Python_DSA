@@ -14,3 +14,6 @@ if __name__ == '__main__':
     for key in hashedArray:
         print(f"{key} : {hashedArray[key]}")
     
+    numberDict = {1:'bunny',2:'cat',3:'dog'}
+    print(numberDict)
+    
