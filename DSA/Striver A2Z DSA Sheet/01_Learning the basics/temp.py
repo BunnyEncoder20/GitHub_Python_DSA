@@ -1,19 +1,28 @@
-from math import sqrt
-import collections
-def hash(arr:list)->list:
-    hashed = {}
-    for char in arr:
-        if char in hashed:
-            hashed[char]+=1
-        else :
-            hashed[char] = 1
-    return hashed
+from typing import List
+from collections import defaultdict
+
+def getFrequencies(v: List[int]) -> List[int]: 
+    hashmap = defaultdict(int)
+    maxmin = [0,0]
+    maxi,mini = 0,1000 
+    
+    for num in v:
+        hashmap[num]+=1
+    
+    for key,value in hashmap.items():
+        if value>maxi:
+            maxi=value
+            maxmin[0]=key
+        elif value==maxi:
+            if key<maxmin[0]: maxmin[0]=key 
+        
+        if value == mini:
+            if key<maxmin[1]: maxmin[1]=key
+        elif value<mini:
+            mini=value
+            maxmin[1]=key
+    return maxmin
 
 if __name__ == '__main__':
-    hashedArray = hash(['a','g','a','d','r','y'])
-    for key in hashedArray:
-        print(f"{key} : {hashedArray[key]}")
-    
-    numberDict = {1:'bunny',2:'cat',3:'dog'}
-    print(numberDict)
-    
+    print(getFrequencies([1, 2, 3, 1, 1, 4]))
+    print(getFrequencies([10, 10,10, 3, 3, 3]))

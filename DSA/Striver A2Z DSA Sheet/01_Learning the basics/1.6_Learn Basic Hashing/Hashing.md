@@ -1,5 +1,7 @@
 # Hashing in DSA (Very Important)
 
+## Theory 
+
 - If you don't know about hashing, you wouldn't be able to solve a lot of DSA questions 
 >- Hashing in naive way can be defined by **pre-storing** some data and then **fetching** it later when needed. 
 - In python hash maps are the Container Data Structure : **`Dictionaries`**
@@ -67,3 +69,83 @@ if __name__ == '__main__':
 - **Collisions** in HashMaps is when the hash function is not an optimal one and so, for 2 different elements, it returned back the same key.
 - In case of collisions, we need to use **Hash Chaining**. Where the collisions elements are stored in a **LinkedList** of the same key. 
 - So in absolute worse case of Hash function could assign all the elements into the same key (probability of this happening is almost 0) and thus in that case, searching and fetching in the HashMap could theoretically be **`O(n)`**
+
+---
+
+## Questions 
+
+### 1. Counting frequency in an Array
+
+> **Problem Statement:** 
+> You are given an array 'arr' of length 'n' containing integers within the range '1' to 'x'.
+>Your task is to count the frequency of all elements from 1 to n.
+>**Note:**
+>You do not need to print anything. Return a frequency array as an array in the function such that index 0 represents the frequency of 1, index 1 represents the frequency of 2, and so on.
+
+- **Example**
+Input: ‘n’ = 6 ‘x’ = 9 ‘arr’ = [1, 3, 1, 9, 2, 7]    
+Output: [2, 1, 1, 0, 0, 0]
+Explanation: Below Table shows the number and their counts, respectively, in the array
+Number :        Count 
+ 1                2
+ 2                1
+ 3                1
+ 4                0
+ 5                0
+ 6                0
+
+- **Solution**
+```python 
+hashmap = {}
+    for i in range(1,n+1):
+        hashmap[i] = 0
+        
+    for num in edges:
+        if num in hashmap:
+            hashmap[num] += 1
+        
+    return hashmap.values()
+```
+
+### 2. Lowest and Highest Frequency Elements
+
+> **Problem statement**
+>- Given an array 'v' of 'n' numbers.
+>- Your task is to find and return the highest and lowest frequency elements.
+>- If there are multiple elements that have the highest frequency or lowest frequency, pick the smallest element.
+
+
+- **Example:**
+```
+Input: ‘n' = 6, 'v' = [1, 2, 3, 1, 1, 4]
+Output: 1 2
+
+Explanation: The element having the highest frequency is '1', and the frequency is 3. The elements with the lowest frequencies are '2', '3', and '4'. Since we need to pick the smallest element, we pick '2'. Hence we return [1, 2].
+```
+- **Solution**
+```python 
+from typing import List
+from collections import defaultdict
+
+def getFrequencies(v: List[int]) -> List[int]: 
+    hashmap = defaultdict(int)
+    maxmin = [0,0]
+    maxi,mini = 0,1000 
+    
+    for num in v:
+        hashmap[num]+=1
+    
+    for key,value in hashmap.items():
+        if value>maxi:
+            maxi=value
+            maxmin[0]=key
+        elif value==maxi:
+            if key<maxmin[0]: maxmin[0]=key 
+        
+        if value == mini:
+            if key<maxmin[1]: maxmin[1]=key
+        elif value<mini:
+            mini=value
+            maxmin[1]=key
+    return maxmin
+```
