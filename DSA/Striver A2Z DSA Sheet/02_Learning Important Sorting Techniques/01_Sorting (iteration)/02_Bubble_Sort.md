@@ -48,7 +48,57 @@
 ```
 - Now repeat steps 1 to 4 till **n + 1** index (the first element will be automatically in the sorted in place) to sort the array.
 
+```python
+> [ [ 13,24 ] 20, 9 | 46, 52 ]
+> [ 13 [ 24,20 ] 9 | 46, 52 ]
+> [ 13 [ 20,24 ] 9 | 46, 52 ]       # swap
+> [ 13, 20, [ 24,9 ] | 46, 52 ]
+> [ 13, 20, [ 9,24 ] | 46, 52 ]     # swap
+> [ 13, 20, 9 | 24, 46, 52 ]        # round 3 completed
+
+> [ [ 13,20 ] 9 | 24, 46, 52 ]
+> [ 13 [ 20,9 ] | 24, 46, 52 ]
+> [ 13 [ 9,20 ] | 24, 46, 52 ]      # swap
+> [ 13, 9 | 20, 24, 46, 52 ]        # round 4 completed 
+
+> [ [ 13,9 ] | 20, 24, 46, 52 ]     # swap
+> [ [ 9,13 ] | 20, 24, 46, 52 ]     # round 5 completed 
+
+> [ 9, 13,  20, 24, 46, 52 ]        # Array sorted
+```
+
 <br>
 
 ### Implementation
+- **Remember** that the outer loop needs to go to second last element only 
 
+```python
+def bubbleSort(arr):
+    for i in range(len(arr)-2, 0, -1):  
+        for j in range(i+1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]     # swap
+    return arr
+```
+
+<br>
+
+- The above can be optimized by stopping when there are no swaps in the inner loop.
+
+```python
+def bubbleSort(arr):
+    for i in range(len(arr)-2, 0, -1):  
+        didSwap = False
+        for j in range(i+1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]     # swap
+                didSwap = True
+        if not didSwap:
+            break
+    return arr
+```
+
+### Time Complexity
+
+- **`Time Complexity`** = `O(n<sup>2</sup>)` (average and worst case)
+- **`Best Time Complexity`** = `O(n)` (If the array is already sorted (no swaps occur we can break out causing only a linear time complexity))

@@ -57,3 +57,6 @@ if __name__ == '__main__':
     print(selectionSort([9,46,24,52,20,13]))
 ```
 
+### Time complexity 
+
+- **`Time Complexity`** = `O(n<sup>2</sup>)` (for all best, average and worse case)

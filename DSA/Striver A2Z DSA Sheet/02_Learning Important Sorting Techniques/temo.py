@@ -1,11 +1,13 @@
-def selectionSort(arr):
-    for i in range(0,len(arr)-1):
-        mini = arr[i]
-        for j in range(i,len(arr)):
-            if arr[j] < mini:
-                mini = arr[j]
-                arr[i],arr[j] = arr[j],arr[i]   # swap
+def bubbleSort(arr):
+    for i in range(len(arr)-2, 0, -1):  
+        didSwap = False
+        for j in range(i+1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]     # swap
+                didSwap = True
+        if not didSwap:
+            break
     return arr
 
 if __name__ == '__main__':
-    print(selectionSort([9,46,24,52,20,13]))
+    print(bubbleSort([9,46,24,52,20,13]))
