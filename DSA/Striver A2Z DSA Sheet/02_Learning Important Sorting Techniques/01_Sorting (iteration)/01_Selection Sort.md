@@ -7,7 +7,9 @@
 ```python
 [13,46,24,52,20,9]
 ```
-- Sorting the array using **Selection Sort** in the following steps : 
+
+## Steps
+
 1. select the minimum in the array and exchange it's place with the element at index 0.
 
 ```python
@@ -29,7 +31,9 @@
 > [9,13,20,24,46,52]
 ```
 - Notice that we don't need to do the selection sort for the last element as it is already sorted.
-- Hence the pseudo code for the algo is : 
+
+
+## Implementation
   
 ```python 
 for i in range(o to n-1):
@@ -57,6 +61,7 @@ if __name__ == '__main__':
     print(selectionSort([9,46,24,52,20,13]))
 ```
 
-### Time complexity 
+## Complexity 
 
-- **`Time Complexity`** = `O(n<sup>2</sup>)` (for all best, average and worse case)
+- **`Time Complexity`** = **O(n<sup>2</sup>)**  
+- (for all best, average and worse case)

@@ -10,7 +10,7 @@
 ```
 <br>
 
-### Steps
+## Steps
 
 1. Take 2 elements at a time from teh beginning of the array:
 
@@ -69,7 +69,7 @@
 
 <br>
 
-### Implementation
+## Implementation
 - **Remember** that the outer loop needs to go to second last element only 
 
 ```python
@@ -98,7 +98,9 @@ def bubbleSort(arr):
     return arr
 ```
 
-### Time Complexity
+## Complexity
 
-- **`Time Complexity`** = `O(n<sup>2</sup>)` (average and worst case)
-- **`Best Time Complexity`** = `O(n)` (If the array is already sorted (no swaps occur we can break out causing only a linear time complexity))
+| **Case**            	| **Time Complexity** 	|
+|-----------------	|-----------------	|
+| Average & Worst 	| **O(n<sup>2</sup>)** 	|
+| Best            	| **O(n)**            	|
