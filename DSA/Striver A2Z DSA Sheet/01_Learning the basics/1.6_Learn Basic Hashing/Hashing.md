@@ -123,6 +123,7 @@ Output: 1 2
 Explanation: The element having the highest frequency is '1', and the frequency is 3. The elements with the lowest frequencies are '2', '3', and '4'. Since we need to pick the smallest element, we pick '2'. Hence we return [1, 2].
 ```
 - **Solution**
+- Notice how we use the defaultdict from collections.
 ```python 
 from typing import List
 from collections import defaultdict
