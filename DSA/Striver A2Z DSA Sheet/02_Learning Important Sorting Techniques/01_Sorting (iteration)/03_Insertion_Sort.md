@@ -10,7 +10,6 @@
 [13,46,24,52,20,9]
 ```
 
-<br>
 
 ## Steps
 1. Start by defining an initial sorted section in the front of the array : 
@@ -42,5 +41,23 @@
 
 ## Implementation 
 
+```python 
+def insertionSort(arr):
+    for i in range(1,len(arr)):
+        j = i
+        while j>0 and arr[j-1]>arr[j] :
+            arr[j],arr[j-1]=arr[j-1],arr[j]
+            j-=1
+            
+    return arr
 
-## Complexity
+if __name__ == '__main__':
+    print(insertionSort([9,46,24,52,20,13]))
+```
+
+## Complexity   
+
+| Case            	| Time Complexity 	|
+|-----------------	|-----------------	|
+| Average & Worst 	| **O(n<sup>2</sup>)** 	|
+| Best            	| O(n)            	|
