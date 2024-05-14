@@ -37,8 +37,8 @@ sayHello("Soma Senpai")     # Hello Soma Senpai
      - these files only come when we import files (not for top level files) to optimize imports
 
 > **NOTE:**
-> - `byte code` is NOT machine code (machine code is direct instructions which you can give to your hardware (intel/apple processor chips)). In all languages byte code != machine code
-> - `byte code` is a python specific interpretation (will not run in any other VM. Eg: JVM)
+> - **byte code** is NOT machine code (machine code is direct instructions which you can give to your hardware (intel/apple processor chips)). In all languages byte code != machine code
+> - **byte code** is a python specific interpretation (will not run in any other VM. Eg: JVM)
 > - There are other variants of python:
 >   - cpython (default)
 >   - jython

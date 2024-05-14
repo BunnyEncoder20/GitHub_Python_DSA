@@ -9,12 +9,12 @@
   - Mutable = can be changed
 - However python works a little differently. Take the below example when we make a username = "hitesh"
 
-![alt text](image.png)
+![alt text](./Notes_Images/image-1.png)
 
 - When the variable is made in python, it creates a object in memory which has a **immutable reference**. 
 - When we make a change in the variable, the object in memory doesn't change. Python makes a another new object in memory with a **immutable reference** and makes the variable refer the new object.
 
-![alt text](image-1.png)
+![alt text](./Notes_Images/image1.png)
 
 - Python has it's own garbage collection so when it encounters such objects which none of the variables are referencing , it automatically removes them from memory.
 
