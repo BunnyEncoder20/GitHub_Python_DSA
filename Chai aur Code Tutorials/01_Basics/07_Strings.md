@@ -156,7 +156,7 @@ I want to eat soma for dessert  😏
 >>> len(bff)
 11
 ```
-3. `.for char in string:` : for loop for looping over each char in the string 
+3. `for char in string:` : for loop for looping over each char in the string 
 ```
 >>> for char in "soma" :     
 ...     print(char)

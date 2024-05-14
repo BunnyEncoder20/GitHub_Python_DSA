@@ -2,7 +2,7 @@
 
 ---
 
-- As we seen then strings are treated almost as Lists and hence things like indexing, slicing, sorting, etc is possible.
+- As we have seen, strings are treated almost as Lists and hence things like indexing, slicing, sorting, etc is possible.
 - These all can also be done in Lists.
 - **Eg:**
 ```
