@@ -30,15 +30,17 @@ class Car :
         
     brand = None
     model = None
+    
+    
+if __name__ == "__main__":
+    Car_instance1 = Car('Lamborgini','Huracan')
+    Car_instance2 = Car('Pagani','Roadster BC')
 
-Car_instance1 = Car('Lamborgini','Huracan')
-Car_instance2 = Car('Pagani','Roadster')
+    print(Car_instance1.brand)  # Lamborgini
+    print(Car_instance1.model)  # Huracan
 
-print(Car_instance1.brand)
-print(Car_instance1.model)
-
-print(Car_instance2.brand)
-print(Car_instance2.model)
+    print(Car_instance2.brand)  # Pagani
+    print(Car_instance2.model)  # Roadster BC
 ```
 - we access the properties (like attributes / functions) of a class using the `.` operator.
 - **`__init__`** function name is used to _def_ the **constructor** of the class in python.
@@ -61,12 +63,14 @@ class Car :
     
     def get_fullname(self):
         return f"{self.brand} {self.model}"
+    
+    
+if __name__ == "__main__":
+    Car_instance1 = Car('Lamborgini','Huracan')
+    Car_instance2 = Car('Pagani','Roadster BC')
 
-Car_instance1 = Car('Lamborgini','Huracan')
-Car_instance2 = Car('Pagani','Roadster')
-
-print(Car_instance1.get_fullname())
-print(Car_instance2.get_fullname())
+    print(Car_instance1.get_fullname())  # Lamborgini Huracan
+    print(Car_instance2.get_fullname())  # Pagani Roadster BC
 ```
 
 ---

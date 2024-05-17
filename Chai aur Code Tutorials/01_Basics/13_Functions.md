@@ -25,7 +25,8 @@
 - make a function to calculate square of a number .
 - **Solution**
 ```python
-
+def square(n):
+    return n*n
 ```
 - parameters are values passed into the function when it is called.
 
@@ -53,9 +54,9 @@ print(result)
 def multi(x, y) : 
     return x*y 
 
-print(multi("Soma",5))
-print(multi(5,"Soma"))
-print(multi(5,5))
+print(multi("Soma",5))  # SomaSomaSomaSomaSoma
+print(multi(5,"Soma"))  # SomaSomaSomaSomaSoma
+print(multi(5,5))       # 25
 ```
 
 --- 
@@ -71,7 +72,7 @@ def area_circumference(x) :
     return area, circumference
 radius = 5
 area,circum = area_circumference(radius)
-print(f"Area of circle with {radius} is {area} and its circumference is {circum}")
+print(f"Area of circle with radius {radius} is {area} and its circumference is {circum}")
 ```
 > **NOTE:** 
 > - how much easier it is to return multiple values from a function in python. (PTSD from C++ & Java)
@@ -122,9 +123,9 @@ print(result(7))
 def sum_all(*args):
     return sum(args)
 
-print(sum_all(1, 2, 3))
-print(sum_all(1, 2, 3, 4, 5))
-print(sum_all(1, 2, 3, 4, 5, 6, 7))
+print(sum_all(1, 2, 3))             # 6
+print(sum_all(1, 2, 3, 4, 5))       # 15
+print(sum_all(1, 2, 3, 4, 5, 6, 7)) # 28
 ```
 > **NOTE:**
 > - The * is important as it allows you to pass any number of arguments
@@ -163,8 +164,8 @@ def print_kwargs(**kwargs):
     for key,value in kwargs.items():
         print(key,value)
 
-print_kwargs(name='Batman', powers='Rich')
-print_kwargs(name='Superman', power1='Super strength', power2='Flight', power3='Super Speed')
+print_kwargs(name='Batman', power1='Rich')
+print_kwargs(name='Superman', power1='Super strength', power2='Flight', power3='Super Speed', power4='x-ray vision', power5='Invincibility')
 ```
 
 ---

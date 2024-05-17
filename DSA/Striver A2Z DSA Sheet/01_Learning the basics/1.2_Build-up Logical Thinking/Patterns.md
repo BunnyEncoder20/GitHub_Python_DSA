@@ -297,7 +297,29 @@ def nStarDiamond(n: int) -> None:
         spaces+=1
         stars-=2
 ```
+- Have a look at this optimized code 
+```python
+def pattern(rows:int) -> None:
+    spaces = rows-1
+    stars = 1
 
+    for r in range(rows-1):
+        print(" "*spaces,end="")
+        print("*"*stars)
+        
+        stars+=2
+        spaces-=1
+    
+    for r in range(rows):
+        print(" "*spaces,end="")
+        print("*"*stars)
+    
+        stars-=2
+        spaces+=1
+
+if __name__=="__main__":
+    pattern(5)
+```
 ---
 
 ### 10. Perfect Right Diamond
@@ -324,9 +346,25 @@ def nStarTriangle(n: int) -> None:
     for i in range(n-1,0,-1):
         for j in range(i):
             print('*',end='')
-        print()
-        
+        print()        
 ```
+- A bit more optimized way: 
+```python 
+def pattern(rows:int) -> None:
+    stars = 1
+    
+    for row in range(rows-1):
+        print(" * "*stars)
+        stars+=1
+    
+    for row in range(rows):
+        print(" * "*stars)
+        stars-=1
+
+if __name__=="__main__":
+    pattern(5)
+```
+
 
 ### 11. Binary Right Triangle
 
@@ -354,6 +392,24 @@ def nBinaryTriangle(n: int) -> None:
                 print(binaryOdd,end=' ')
                 binaryOdd = 0 if binaryOdd else 1
         print()
+```
+- **Check out this more optimized code**
+
+```python
+def pattern(rows:int) -> None:
+    star = 1
+    
+    for row in range(rows):
+        startingNum = 1 if row % 2 == 0 else 0
+
+        for j in range(row+1):
+            print(startingNum, end=' ')
+            startingNum = 1 if startingNum == 0 else 0
+        
+        print()
+
+if __name__=="__main__":
+    pattern(5)
 ```
 
 ### 12. Number Mirrored Crown
