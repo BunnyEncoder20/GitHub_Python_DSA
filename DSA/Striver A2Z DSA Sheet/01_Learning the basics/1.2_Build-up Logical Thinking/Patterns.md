@@ -440,6 +440,31 @@ def numberCrown(n: int) -> None:
         print()
         spaces-=2
 ```
+- Another approach:
+
+```python 
+def pattern(rows:int) -> None:
+    spaces = (rows-1)*2
+    num = 1
+    
+    
+    for i in range(rows):
+        for j in range(i+1):
+            print(num,end=' ')
+            num+=1
+            
+        print(" "*spaces*2,end=' ')
+        
+        for j in range(i+1):
+            num-=1
+            print(num,end=' ')
+        print()
+        
+        spaces-=2
+
+if __name__=="__main__":
+    pattern(5)
+```
 
 ---
 

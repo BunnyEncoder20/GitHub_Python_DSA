@@ -1,14 +1,7 @@
-def pattern(rows:int) -> None:
-    star = 1
-    
-    for row in range(rows):
-        startingNum = 1 if row % 2 == 0 else 0
+from collections import defaultdict
 
-        for j in range(row+1):
-            print(startingNum, end=' ')
-            startingNum = 1 if startingNum == 0 else 0
-        
-        print()
-
-if __name__=="__main__":
-    pattern(5)
+dd = defaultdict(int)  # int() returns 0
+dd['a'] += 1
+print(dd)              # Output: defaultdict(<class 'int'>, {'a': 1})
+dd['b']                # Output: 0
+print(dd)              # Output: defaultdict(<class 'int'>, {'a': 1, 'b': 0})
