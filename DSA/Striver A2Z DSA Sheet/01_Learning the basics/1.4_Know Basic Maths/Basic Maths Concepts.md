@@ -7,7 +7,7 @@
 - Take the number = 7789
 - We can extract the digits from the number (starting from right to left):
   - `number % 10` = 9 (because nearest 10 divisble number would be 7780, hence the last digit we will get as remainder)
-  - `number /10` = 778 (because 7789/10 = int(778.9) = 778)
+  - `number / 10` = 778 (because 7789/10 = int(778.9) = 778)
 - Similarly we can extract all the digits from the number by repeating the above 2 steps till we get number/10 == 0
 
 <br>
@@ -62,12 +62,24 @@ def countDigits(n: int) -> int:
         
     return count 
 ```
-2. Log10 approach : 
+2. Another way : 
 ```python 
-from math import log10
+def countDigits(num: int) -> int:
+    originalNum = num
+    count = 0
+    
+    while(num/10!=0):
+        lastDigit = num%10
+        if(lastDigit!=0 and originalNum%lastDigit==0):
+                count+=1
+        num = num//10
+    
+    return count
+    
 
-def getDigits(n: int) -> None:
-    print(f"Number of digits in 7789 = {int(log10(n)+1)}")
+if __name__=='__main__':
+    num = int(input("Enter the number : "))
+    print("Output: ",countDigits(num))
 ```
 - `Time Complexity`: **O(log<sub>10</sub>(n))**
 
@@ -81,7 +93,7 @@ def getDigits(n: int) -> None:
 ### 2. Reversing an Integer - [LeetCode](https://leetcode.com/problems/reverse-integer/description/)
 
 - **Problem Statement:** Given a signed 32-bit integer x, return x with its digits reversed. 
-- If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+- If reversing x causes the value to go outside the signed 32-bit integer range [-2<sup>31</sup>, +2<sup>31</sup> - 1], then return 0.
 - **Examples:**
 ```
 Example 1:

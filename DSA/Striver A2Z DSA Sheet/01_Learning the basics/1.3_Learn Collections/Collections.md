@@ -2,7 +2,7 @@
 
 ---
 
-- Container Data types [Documentations] (https://docs.python.org/3/library/collections.html)
+- Container Data types [Documentations](https://docs.python.org/3/library/collections.html)
 - This module implements specialized container data types providing alternatives to Python’s general purpose built-in containers, dict, list, set, and tuple.
 - Most used is DEque (Doubly Ended Queue, pronounced as _decks_)
 
