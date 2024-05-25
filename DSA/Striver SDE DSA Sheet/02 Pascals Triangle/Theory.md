@@ -106,7 +106,7 @@ def getRow(n:int):
     middleElements = [0]*n-2
     rowElements = [1,*middleElements,1]
     
-    for j in range(1,n):
+    for j in range(1,n-1):
         temp = rowElements[j-1] * (n-j)
         temp = temp // j
         rowElements[j] = temp
