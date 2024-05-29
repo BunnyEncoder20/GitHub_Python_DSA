@@ -1,6 +1,7 @@
 # Recursively printing all permutations of a number / string
 # Time complexity : O(n! x n)
 # Space Complexity : O(n) + O(n)
+# Brute , not Optimal cause of extra data structure memory requirements.
 
 def recursivePermutations(number, stack, mapping, answer):
 

@@ -15,7 +15,7 @@ All possible Permutations include:
 As given permutation is at index 4, we return the next index permutation i.e. [3,2,1]
 ```
 ---
-## Printing all Permutations Recursively
+## Printing all Permutations Recursively - Approach 1
 
 - We gonna need a the number in a list, 2 data structures: stack(for keep track of current combination) and dictionary (to see which numbers we have already taken) and another list to store the resultant permutations.
 - **Time complexity will be `O(N!xN)`**
@@ -52,7 +52,47 @@ if __name__ == '__main__':
     answer.sort()       # or can do this to sort the permutations
     print(answer)
 ```
+- The above approach, the time complexity is `O(N!xN)` and the space complexity is `O(N)+O(N)`. The space complexity is not good and the below approach fixes this. 
 
+---
+
+## Printing all Permutations Recursively - Approach 2
+
+- In this approach, instead of using a stack and dictionary which use extra memory, we swap the numbers within the original DS. 
+- The numbers to the left of the index, are fixed and the numbers to the right of the index, are to be swapped. Then for the next recursion, the index is moved more towards the right
+- This is done recursively until the index == len(number).
+- This way, we do not use any extra space, which improves the space complexity to `O(1)`.
+
+```python
+def recursivePermutations(index, number, answer):
+    
+    # Ending case 
+    if index == len(number):
+        answer.append(number[:])
+        return 
+    
+    # Other cases 
+    for i range(index,len(number)):
+        swap(index,i,number) # swap for new combination
+        recursivePermutations(index+1, number, answer)
+        swap(index,i,number) # un swap to get original number back
+
+
+def swap(i, j, number):
+    temp = number[i]
+    number[i] = number[j]
+    number[j] = temp
+
+if __name__ == '__main__':
+    number = [3,2,1]
+    number.sort()
+    index = 0
+    answer = []
+    recursivePermutations(index, number, answer)
+    print(answer)
+```
+
+---
 ---
 ## Brute Force 
 
