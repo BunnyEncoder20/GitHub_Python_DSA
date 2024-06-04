@@ -156,5 +156,37 @@ if __name__=='__main__':
 
 ---
 
-## Optimal
+## Optimal (Dutch National flag Algorithm)
 
+- The Algorithm will use 3 poiunters :
+  - low
+  - mid
+  - high
+- The Algorithm is revolving around 3 rules :
+1. Everything between [0 : low-1] will be 0 (extreme left)
+2. Everything from [low : mid-1]  will be 1
+3. Everything from [high+1 : n-1] will be 2 (extreme right)
+
+<br>
+
+- The above rules divide the arr into 4 sections :
+    1. [0 : low-1] : which keeps all the 0
+    2. [low : mid-1] : which keeps all the 1
+    3. [mid : high] : which keeps 0,1,2 in unsorted manner
+    4. [high+1 : n-1] : which keeps all the 2
+
+### Algorithm 
+- We start by making the points
+    - mid = 0 , high = n-1 (the unsorted region)
+    - low = 0
+- In our algo, we'll be solving wrt a[mid]
+- a[mid] can have any of these 3 cases :
+    - a[mid] = 0 :
+        - swap(a[low] , a[mid]) ;
+        - low+=1 ; mid+=1 ;
+    - a[mid] = 1 :
+        - mid+=1
+    - a[mid] = 2 :
+        - swap(a[mid] , a[high]) ;
+        - high-=1;
+- We repeat this process untill mid > high
