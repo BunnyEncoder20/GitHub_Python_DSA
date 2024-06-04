@@ -1,5 +1,5 @@
 def mergeSort(arr, low, high):
-    if low == high: return
+    if low >= high: return
     
     mid = (low+high)//2
     
@@ -29,9 +29,11 @@ def merge(arr, low, mid, high):
         temp.append(arr[right])
         right+=1
 
-    for i in range(low,high):
+    for i in range(low,high+1):
         arr[i] = temp[i-low]
 
 if __name__ == '__main__':
     nums = [1,3,2,5,6,1,7,9,8]
     mergeSort(nums,0,len(nums)-1)
+    print(nums)
+    
