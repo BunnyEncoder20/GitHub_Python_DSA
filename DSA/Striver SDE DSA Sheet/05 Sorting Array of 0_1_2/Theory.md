@@ -181,12 +181,12 @@ if __name__=='__main__':
     - low = 0
 - In our algo, we'll be solving wrt a[mid]
 - a[mid] can have any of these 3 cases :
-    - a[mid] = 0 :
+    1. a[mid] = 0 :
         - swap(a[low] , a[mid]) ;
         - low+=1 ; mid+=1 ;
-    - a[mid] = 1 :
+    2. a[mid] = 1 :
         - mid+=1
-    - a[mid] = 2 :
+    3. a[mid] = 2 :
         - swap(a[mid] , a[high]) ;
         - high-=1;
-- We repeat this process untill mid > high
+- We repeat this process until mid > high
