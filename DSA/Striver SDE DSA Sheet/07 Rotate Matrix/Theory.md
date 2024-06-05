@@ -65,7 +65,7 @@ if __name__ == "__main__":
 
 --- 
 
-## Better Solution
+## Optimal Solution
 
 - **Time Complexity : O(n<sup>2</sup>)**
 - **Space Complexity : O(1)**
@@ -85,8 +85,8 @@ if __name__ == "__main__":
 1. Transpose : 
 
 ```python
-for i in range(n):
-    for j in range(n):
+for i in range(0,n-1):
+    for j in range(i+1,n):
         swap(a[i][j], a[j][i])
 ```
 2. Reverse all the rows of the answer mat
@@ -99,7 +99,32 @@ for row in a:
 - Code : 
 
 ```python 
+from typing import List 
 
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        n = len(matrix)
+        
+        # Making transpose
+        for i in range(0,n-1):
+            for j in range(i+1,n):
+                matrix[i][j],matrix[j][i] = matrix[j][i],matrix[i][j]
+        
+        # Reversing the rows
+        for row in matrix:
+            row.reverse()
+    
+
+if __name__ == '__main__':
+    ins = Solution()
+    matrix1 = [[1,2,3],[4,5,6],[7,8,9]]
+    matrix2 = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
+    
+    ins.rotate(matrix1)
+    ins.rotate(matrix2)
+    
+    print(matrix1)
+    print(matrix2)
 ```
 
 ---

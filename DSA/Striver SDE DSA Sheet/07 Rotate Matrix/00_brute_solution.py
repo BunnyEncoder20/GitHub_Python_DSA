@@ -12,7 +12,7 @@ class Solution:
         for i in range(n):
             for j in range(n):
                 answer[j][(n-1)-i] = matrix[i][j]
-                # print(answer)
+                
         
         return answer
         
