@@ -1,4 +1,4 @@
-# Repeat and Missing Number
+# Repeated and Missing Number
 
 - Given a array of n integers which will have a repeating number and a missing number 
 - We have to return the missing number and the repeated number
