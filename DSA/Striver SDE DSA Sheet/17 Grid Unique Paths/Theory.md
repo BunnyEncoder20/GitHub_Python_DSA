@@ -53,15 +53,15 @@ if __name__ == "__main__":
 
 ---
 
-## Better Approach (Dynamix Programming Solution)
+## Better Approach (Dynamic Programming Solution)
 
 - We can better the complexity by converting the recursive code into a dynamic programming code 
 - We know that for each recursive step the state can be [i][j] which at max can have the value [m][n]. 
 - And the total number of such states possible are mxn
-- Hence we make a hashtable of mxn, initialized to -1.
-- If we visit a state for the first time and it returns a value of 1, we can store that state into our Hashtable.
-- When some other branch of the recursion, trys to take the same state again, we can simple grab it's value from the hashtable wihtout performing the recursion. 
-- This is called **Dynamic Programming** in which we retrieve previously computed values witout actually performing the computation in current step.
+- Hence we make a hash table of mxn, initialized to -1.
+- If we visit a state for the first time and it returns a value of 1, we can store that state into our Hash table.
+- When some other branch of the recursion, tries to take the same state again, we can simple grab it's value from the hash table without performing the recursion. 
+- This is called **Dynamic Programming** in which we retrieve previously computed values without actually performing the computation in current step.
 
 <br>
 

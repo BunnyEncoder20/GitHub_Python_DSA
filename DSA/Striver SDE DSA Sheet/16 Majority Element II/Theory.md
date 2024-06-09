@@ -7,20 +7,20 @@
 > Output : [1,2]    (8//2 = 2)
 ```
 - **Note:** That at max, the number of elements that will be more than floor of n/3 will be 2 elements only. 
-- Take the above example, we need majority element to appear atleast 3 times. 
-- Hence if the answer had 3 elements then the size of the array would have to be atleast 3+3+3 = 9. 
-- Hence we can definately say that there will be only 2 elements which can appear more than n/3 times.
+- Take the above example, we need majority element to appear at least 3 times. 
+- Hence if the answer had 3 elements then the size of the array would have to be at least 3+3+3 = 9. 
+- Hence we can definitely say that there will be only 2 elements which can appear more than n/3 times.
 
 ---
 
-## Brute Force Appraoch 
+## Brute Force Approach  
 
 - Linear search the array for each element and return element(s) which appeared more than n/3 times.
 
 ### Algorithm 
 
 1. Start with a pointer at starting. Iterate over the array.
-2. If element is not in the ans array, Start another pointer to count it's total occurances in the array. 
+2. If element is not in the ans array, Start another pointer to count it's total occurrences in the array. 
 3. If it's count is more than n/3 times, append it into the answer array. 
 4. Check to see if the number of elements in ans array is not more than than 2. If it is already at 2, return the answer array, else continue. 
 
@@ -56,7 +56,7 @@ def majorityElement(nums: List[int]) -> List[int]:
 
 ## Better Approach 
 
-- We can imporove on the O(n<sup>2</sup>) time complexity by using **Hashmap**
+- We can improve on the O(n<sup>2</sup>) time complexity by using **Hashmap**
 - **Time Complexity : O(n)**
 - **Space Complexity : O(n)**
 
@@ -64,11 +64,11 @@ def majorityElement(nums: List[int]) -> List[int]:
 
 ### Algorithm 
 
-- Declare an empty hasmap dict[element:count]
-- Iterate over the array and upadte the hasmap.
+- Declare an empty hashmap dict[element:count]
+- Iterate over the array and update the hashmap.
 - After this iterate over the hashmap and return the elements which have count > n/3 times. 
 
-**But** we can further optimize byremoving the step in which we need to iterate4 over the hashmap.
+**But** we can further optimize by removing the step in which we need to iterate4 over the hashmap.
 
 - While updating the count in the hashmap itself, we check the count, and if it becomes (n//3)+1 then we add it directly into our ans array. 
 - This way we only iterate over the array once.
@@ -105,8 +105,8 @@ def majorityElement(nums: List[int]) -> List[int]:
 ## Optimal Approach 
 
 - We will use a modified version of Moore's Voting algorithm.
-
-<br>
+- **Time Complexity : O(n)+O(n)+O(1) = O(2n)**
+- **Space Complexity : O(1)**
 
 ### Algorithm 
 
@@ -121,7 +121,7 @@ def majorityElement(nums: List[int]) -> List[int]:
 5. Elif nums[i] == element1, counter1+=1 
 6. Elif nums[i] == element2, counter2+=1 
 7. Else counter1-=1 and counter2-=1
-8. After iterating over the array, we can maually check for whether element 1 and element 2 are majority elements or not. 
+8. After iterating over the array, we can manually check for whether element 1 and element 2 are majority elements or not. 
 
 <br>
 
@@ -149,7 +149,7 @@ class Solution:
                 counter1-=1
                 counter2-=1
         
-        # After the above loop we will have some number in element1 and element2, but cannot say for sure they are the mojority elements (in case there might not be any majority elements)
+        # After the above loop we will have some number in element1 and element2, but cannot say for sure they are the majority elements (in case there might not be any majority elements)
         # Hence we need to verify
         count1,count2=0,0
         ans = []
@@ -170,6 +170,3 @@ if __name__ == "__main__":
         print(i.majorityElement(num))
 ```
 <br>
-
-- **Time Complexity : O(n)+O(n)+O(1) = O(2n)**
-- **Space Complexity : O(1)**

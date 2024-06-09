@@ -69,6 +69,11 @@ def getInversions(arr,n):
 - That i.e; counter += (mid-left+1)
 - As soon as the right side elements are over, we merge the arrays for the next iteration of merge sort and repeat the process.
 
+<br>
+
+- **Time Complexity : O(nlogn)**
+- **Space Complexity : O(1)**
+
 ### Code
 
 ```python 

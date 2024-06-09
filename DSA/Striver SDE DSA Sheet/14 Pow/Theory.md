@@ -6,7 +6,7 @@
 
 ---
 
-## Brute Force Apporach 
+## Brute Force Approach  
 
 - We can simple make a loop and keep multiplying x for n times : 
 - **Note** that this will only work if n is `+ve`.

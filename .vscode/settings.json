@@ -4,6 +4,7 @@
         "bson",
         "deque",
         "dotenv",
+        "hashtable",
         "pymongo",
         "Quasilinear",
         "squarerooot"

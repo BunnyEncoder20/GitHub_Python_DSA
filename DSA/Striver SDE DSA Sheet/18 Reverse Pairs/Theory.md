@@ -86,6 +86,9 @@ Hence we can solve our original problem in a similar way to count inverse's opti
 
 <br>
 
+- **Time Complexity : O(nlogn)**
+- **Space Complexity: O(n)**
+
 ### Code 
 
 ```python

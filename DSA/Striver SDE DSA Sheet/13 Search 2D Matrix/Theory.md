@@ -6,7 +6,7 @@
 
 ## Brute Force Solution 
 
-- Siimply traverse the matrix and find the target.
+- Simply traverse the matrix and find the target.
 - **Time Complexity : O(nxm)**
 - **Space Complexity : O(1)**
 
@@ -30,7 +30,7 @@ def searchMatrix(matrix: List[List[int]], target: int) -> bool:
 - **Time Complexity: O(m) + O(log<sub>2</sub>n)** (where `m` is no. of rows and `n` is no. of cols)
 - **Space Complexity: O(1)**
 
-### Binary Serach 
+### Binary Search  
 
 - Searching algorithm for searching in a limited space of sorted arrays. 
 - The array has to be sorted and unique. 
@@ -82,7 +82,7 @@ def recursiveBinarySearch(arr,low,high,target):
 
 1. Go row by row and check if the Target lies between row[0] and row[n-1]
 2. If the element doesn't lie between the two, then we will not check that row. 
-3. Only when the Target lies between the first and last element will be saerch that row. 
+3. Only when the Target lies between the first and last element will be search that row. 
 4. Because the row (1D array) is sorted, we can implement binary search on the row to find our element. 
 
 - **Time Complexity : O(m) + O(log<sub>2</sub>n)**
@@ -125,7 +125,7 @@ class Solution:
 ### Optimal Solution 
 
 - We can further optimize the solution by Treating (not converting) the 1D matrix as a 2D matrix.
-- If we treat it as a 1D sorte array, when we can simply apply binary search and get a better time complexity. 
+- If we treat it as a 1D sorted array, when we can simply apply binary search and get a better time complexity. 
 - We just need a mapping from an index into it's 2D coordinate 
 
 - **Time Complexity : O(log<sub>2</sub>nxm)**
@@ -139,7 +139,7 @@ class Solution:
 2. Now we take 
     - low = 0
     - high = (mxn)-1
-3. Using bianry search algo : 
+3. Using binary search algo : 
 
 ```python
 while low<=high:
