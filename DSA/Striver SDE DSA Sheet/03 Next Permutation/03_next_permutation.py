@@ -36,7 +36,7 @@ class Solution:
 
 
 if __name__=="__main__":
-    list_of_numbers = [[1,3,2]]
+    list_of_numbers = [[1,3,2],[1,3,8,7,6,4,2]]
     classInstance = Solution()
     
     for num in list_of_numbers:

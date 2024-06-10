@@ -7,7 +7,7 @@ def recursivePermutations(number, stack, mapping, answer):
 
     # Base case (ending case)
     if len(stack)==len(number):
-        answer.append(stack[:]) # stack[:] reacts a deep copy of the stack, so that it doesn't reference the original stack ds 
+        answer.append(stack[:]) # stack[:] creates a deep copy of the stack, so that it doesn't reference the original stack ds 
         return
     
     # if the stack is not filled: (remaining cases)

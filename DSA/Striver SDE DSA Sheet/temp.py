@@ -1,19 +1,20 @@
-from typing import List
-
-def generate(numRows: int) -> List[List[int]]:
-    triangle = []
-
-    for i in range(numRows):
-        getRow = [0]*(i+1)
-        getRow[0],getRow[-1]=1,1
+class Solution:
+    def printPascals(self, row):
+        ans = []
+        for i in range(row):
+            ans.append(self.getRow(i+1))
+        return ans
+    
+    def getRow(self, i):
+        row = [0]*i
+        row[0] = 1
         
-        for j in range(1,i+1):
-            getRow[j] = getRow[j-1] * ((i+1)-j)
-            getRow[j] //= j
+        for j in range(1,i):
+            row[j] = ((row[j-1]*(i-j))/j) 
         
-        triangle.append(getRow)
-
-    return triangle
+        return row
 
 if __name__ == '__main__':
-    print(generate(5))
+    i = Solution()
+    row = 6
+    print(i.printPascals(row))
