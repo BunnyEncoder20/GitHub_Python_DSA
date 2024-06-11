@@ -133,7 +133,7 @@ class Solution:
                                 k+=1
                                 l-=1
                                 while nums[k]==nums[k-1] and k<l : k+=1
-                                while nums[l]==nums[l-1] and k<l : l-=1
+                                while nums[l]==nums[l+1] and k<l : l-=1
                             elif sum < target:
                                 k+=1
                             elif sum > target:
