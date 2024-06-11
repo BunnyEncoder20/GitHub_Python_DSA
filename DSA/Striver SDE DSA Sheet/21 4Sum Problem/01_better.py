@@ -6,16 +6,16 @@ class Solution:
 
         for i in range(n):
             for j in range(i+1,n):
-                hashset = set()
+                hashmap = set()
                 for k in range(j+1,n):
-                    forth = target - (nums[i]+nums[j]+nums[k])
-
-                    if forth in hashset:
-                        tempList = [nums[i],nums[j],nums[k],forth]
-                        tempList.sort()
-                        answerSet.add(tuple(tempList))
-                        
-                    hashset.add(nums[k])
+                    l = target - (nums[i] + nums[j] + nums[k])
+                    
+                    if l in hashmap:
+                        quadruplets = [nums[i],nums[j],nums[k],l]
+                        quadruplets.sort()
+                        answerSet.add(tuple(quadruplets))
+                    
+                    hashmap.add(nums[k]) 
         
         return [list(quadruplets) for quadruplets in answerSet]
 
