@@ -18,3 +18,4 @@ if __name__ == '__main__':
     i = Solution()
     row = 6
     print(i.printPascals(row))
+    
