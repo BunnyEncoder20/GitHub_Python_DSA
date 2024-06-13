@@ -50,10 +50,21 @@ class Solution:
 ### Code 
 
 ```python
+def intersectionPresent(head1,head2):
+    hash_table = set()
 
+    while head1:
+        hash_table.add(head1)
+        head1 = head1.next
+    while head2:
+        if head2 in hash_table:
+            return head2
+        head2 = head2.next
+    
+    return None
 ```
 - Time complexity : O(n+m)
-- Space complexity : O(n)
+- Space complexity : O(n)   (cause of hash table)
 
 <br>
 
@@ -63,12 +74,27 @@ class Solution:
 
 - [Watch it here](https://youtu.be/u4FWXfgS8jw?si=7vbgTmqzJT-04yc0&t=733)
 - Make 2 dummy nodes and iterate throughout the LinkedList.
-- When a dummy node reeaches it's LL end, we make it start over again but at other linkedlist. 
+- When a dummy node reaches it's LL end, we make it start over again but at other linkedlist. 
 - hence the dummy nodes will cross over and they will be at same level once both have started over
 - They will meet on the intersection node 
 
 ### Code 
 
 ```python 
-
+def intersectionPresent(head1,head2):
+    if head1 == None or head2 == None: return None
+        
+    dummy1 = head1
+    dummy2 = head2
+    
+    while dummy1 != dummy2:
+        if dummy1 == None: dummy1 = head2
+        else : dummy1 = dummy1.next
+        
+        if dummy2 == None : dummy2 = head1
+        else : dummy2 = dummy2.next
+    
+    return dummy2
 ```
+- **Time complexity : O(2*max(len(l1),len(l2)))**
+- **Space complexity : O(1)**
