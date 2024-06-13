@@ -33,9 +33,10 @@ def detect_loop(head):
 
 <br>
 
-## Better Approach
+## Optimal Approach
 
-- Using the Tortoise and Hare algorithm. 
+- Using the **Tortoise and Hare algorithm**. 
+- Optimized the Space complexity by not using eternal DS
 
 ### Algorithm
 
@@ -47,4 +48,18 @@ def detect_loop(head):
 
 ## Code 
 
-- 
+```python
+def detect_loop(head):
+    slow = head
+    fast = head
+    
+    while fast != None and fast.next != None:
+        slow = slow.next
+        fast = fast.next.next
+        
+        if slow == fast : return True 
+    
+    return False
+```
+- **Time complexity : O(n)**    (not fixed, depends on the input)
+- **Space complexity : O(1)**
