@@ -1,5 +1,12 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
 # Actual Problem Code
 def kReverse(head,k):
+    if k<1 or head is None: return head
+    
     temp = head 
     prev_group_node = None
 
@@ -15,18 +22,18 @@ def kReverse(head,k):
         # Saving the next_group starting node
         next_group_node = kth_node.next
 
-        # seperating the current group from the remaining LL
+        # separating the current group from the remaining LL
         kth_node.next = None
 
-        reverseLL(temp)
-        printLinkedList(temp)
+        ## reversing the group LL
+        reversed_group_head = reverseLL(temp)
 
         # if it is the first group, reassign the new head 
         # else join the current group to the prev group
         if temp == head : 
-            head = kth_node
+            head = reversed_group_head
         else :
-            prev_group_node.next = temp 
+            prev_group_node.next = reversed_group_head 
         
         prev_group_node = temp
         temp = next_group_node
@@ -41,7 +48,7 @@ def getKth(temp,k):
     return temp
 
 def reverseLL(head):
-    back = Node(None)
+    back = None
     current = head 
     front = head.next
 
@@ -54,7 +61,7 @@ def reverseLL(head):
     return back     
 
 # Function to print the linked list
-def printLinkedList(head):
+def printLL(head):
     temp = head
     while temp is not None:
         print(temp.data, end=" ")
@@ -62,14 +69,9 @@ def printLinkedList(head):
     print()
 
 
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
 
 
-# Create a linked list with
-# values 5, 4, 3, 7, 9 and 2
+# Driver Code 
 head = Node(5)
 head.next = Node(4)
 head.next.next = Node(3)
@@ -79,11 +81,11 @@ head.next.next.next.next.next = Node(2)
 
 # Print the original linked list
 print("Original Linked List: ", end="")
-printLinkedList(head)
+printLL(head)
 
-# Reverse the linked list
+# Reverse the linked list in k groups
 head = kReverse(head,3)
 
 # Print the reversed linked list
 print("Reversed Linked List: ", end="")
-printLinkedList(head)
+printLL(head)
