@@ -67,7 +67,7 @@ if __name__ == "__main__":
 
 ## Optimal Solution
 
-- **Time Complexity : O(n<sup>2</sup>)**
+- **Time Complexity : O(n<sup>2</sup>) + O(n<sup>2</sup>)**
 - **Space Complexity : O(1)**
 - This approach is considered better as we do in space replacement. That way, the space complexity is reduced. 
 - The observation which helps to solve this:
