@@ -7,7 +7,7 @@
 
 ---
 
-## Brutre Force Approach 
+## Brute Force Approach 
 
 - Try out all of the triplets using 3 loops
 
@@ -41,8 +41,8 @@ if __name__ == "__main__":
     for nums in numsList : 
         print(i.threeSum(nums))
 ```
-- **Time Complexity : O(n<sup>3</sup>)**
-- **Space Complexity : 2*O(no. of triplets)**
+- **Time Complexity : O(n<sup>3</sup>) + O(log(no. of triplets))** (because we are using set DS)
+- **Space Complexity : 2*O(no. of triplets)** (answerSet + temp)
 
 ---
 
@@ -53,7 +53,6 @@ if __name__ == "__main__":
 
 ### Algorithm 
 - [watch it here](https://youtu.be/DhFh8Kw7ymk?si=KTDmXutZJotpehuu&t=745)
-
 
 
 ### Code 
@@ -67,17 +66,17 @@ class Solution:
         ansSet = set()
         
         for i in range(n):
-            hash = set()
+            hashset = set()
             
             for j in range(i+1,n):
                 k = 0 - (nums[i]+nums[j])
             
-                if k in hash : 
+                if k in hashset : 
                     temp = [nums[i],nums[j],k]
                     temp.sort()
                     ansSet.add(tuple(temp))
 
-                hash.add(nums[j])
+                hashset.add(nums[j])
         
         return [list(triplets) for triplets in ansSet]
 

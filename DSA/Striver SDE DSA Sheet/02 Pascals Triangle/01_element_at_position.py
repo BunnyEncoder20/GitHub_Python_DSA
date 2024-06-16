@@ -6,6 +6,7 @@ def element_at_position(row:int,col:int) -> int:
     for i in range (r):
         ans *= (n-i)
         ans //= (i+1)
+        print(ans)
     
     return ans
 

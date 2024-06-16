@@ -1,5 +1,5 @@
 def getRow(n:int):
-    middleElements = [0]*n-2
+    middleElements = [0]*(n-2)
     rowElements = [1,*middleElements,1] # this is the spread operator for python
     
     for j in range(1,n):

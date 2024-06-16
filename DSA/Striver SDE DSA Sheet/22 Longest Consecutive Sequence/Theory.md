@@ -64,8 +64,8 @@ if __name__ == "__main__":
 
 ### Algorithm 
 - [Watch it here](https://youtu.be/oO5uLE7EUlM?si=o-xfsL7dSkK5txM4&t=320)
-- sort the array
-- keep a last min, if current element-1 is the last min, counter+1
+- **sort the array**
+- keep a last_element (last element we added into the seq), if current element-1 is the last_element, counter+1
 - else restart counter and seq
 
 ### Code
@@ -87,7 +87,7 @@ class Solution:
             elif nums[i]-1 != last_smaller : 
                 streak = 0
                 last_smaller = nums[i]
-            else : # for nums[i]==last_smaller, we do not do anything, just incraese the counter
+            else : # for nums[i]==last_smaller, we do not do anything, just increase the counter
                 continue
             
             longest = max(longest,streak)
@@ -100,7 +100,7 @@ if __name__ == "__main__":
         print(i.longestConsecutive(nums))
 ```
 - **Time Complexity : O(nlog(n)) + O(n)** (for the sorting + loop)
-- **Space compleixty : O(1)**
+- **Space Complexity : O(1)**
 - Distorts the array so can ask you to optimize by not doing that or removing the nlog(n) complexity.
 
 ---

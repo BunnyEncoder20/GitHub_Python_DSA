@@ -47,9 +47,9 @@ def twoSum(self, nums: List[int], target: int) -> List[int]:
 
 ## Better/Optimal Approach 
 
-- We can use hashing to imporve the the time complexity to O(n)
+- We can use hashing to improve the the time complexity to O(n)
 - We can use a Dictionary Hashmap for this, storing number and it's index in it.
-- Better Approach is the most ptimal approach for varity 1 (in which we need to return the indexes)
+- Better Approach is the most optimal approach for variety 1 (in which we need to return the indexes)
 
 ### Code
 
@@ -86,8 +86,9 @@ if __name__ == "__main__":
 
 ## Optimal Approach (Greedy Approach)
 
-- Same TC as the better one, jsut doesn't use the map/dictionary DS
-- **Only Applicable for the variaty 2 (True/False return type) variant.**
+- Same TC as the better one, just doesn't use the map/dictionary DS
+- **Only Applicable for the variety 2 (True/False return type) variant.**
+- Because we sort the array and the original indices are lost
 
 ### Code 
 
@@ -98,7 +99,7 @@ class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         n = len(nums)
         left,right = 0,n-1
-        nums.sort()
+        nums.sort()         
 
         while left<right:
             sum = nums[left]+nums[right]

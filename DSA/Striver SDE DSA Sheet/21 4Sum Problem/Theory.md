@@ -10,7 +10,7 @@
 
 ## Brute Force Approach 
 
-- Just generate all teh 4 pairs using 4 loops 
+- Just generate all the 4 pairs using 4 loops 
 
 ### Algorithm
 
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     print(i.fourSum(nums2,t2))
 ```
 - **Time Complexity : O(n<sup>4</sup>)**
-- **Spacde Complexity : O(no. of quads)**
+- **Space Complexity : O(no. of quads)**
 
 ---
 
@@ -56,7 +56,8 @@ if __name__ == "__main__":
 
 ### Algorithm 
 
-[Watch it here](https://youtu.be/eD95WRfh81c?si=5dR29FYcg8qFhtFq&t=376)
+- [Watch it here](https://youtu.be/eD95WRfh81c?si=5dR29FYcg8qFhtFq&t=376)
+- Use hashing and get rid of the last loop
 
 ### Code 
 
@@ -90,8 +91,8 @@ if __name__ == "__main__":
     print(i.fourSum(nums1,t1))
     print(i.fourSum(nums2,t2))
 ```
-- **Time complexity : O(n<sup>3</sup>) + O(log(m))** (m is variable)
-- Space complexity : O(n) + O(no. of quads) (internal hash + set)
+- **Time complexity : O(n<sup>3</sup>) + O(log(m))** (m is number of elements in the hash)
+- **Space complexity : O(n) + O(no. of quads)** (internal hash + set)
 
 ---
 
@@ -102,8 +103,12 @@ if __name__ == "__main__":
 
 ### Algorithm 
 
-- sort the array
 - [watch it here](https://youtu.be/eD95WRfh81c?si=7Zr0R64z5MOtC5kD&t=912)
+- **sort the array**
+- Fix `i` and `j`(=i+1)
+- move `k` (=j+1) to increase the sum 
+- move `l` (=n-1) to decrease the sum 
+- While `k<l` and Until the sum is = `target` 
 
 ### Code 
 
@@ -129,7 +134,6 @@ class Solution:
                             if sum == target:
                                 quadruplets = [nums[i],nums[j],nums[k],nums[l]]
                                 ans.append(quadruplets)
-                                
                                 k+=1
                                 l-=1
                                 while nums[k]==nums[k-1] and k<l : k+=1
