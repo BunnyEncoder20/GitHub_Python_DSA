@@ -45,8 +45,8 @@ if __name__ == "__main__":
     n,arr=8,[15,-2,2,-8,1,7,10,23]
     print(i.maxLen(n,arr))
 ```
-- Time complexity : O(n<sup>3</sup>)
-- Space complexity : O(1)
+- **Time complexity : O(n<sup>3</sup>)**
+- **Space complexity : O(1)**
 - But we can optimize our brute using the observation : 
     - we don't need to sum the entire subarray always
     - Just add the new element, to the previous calculated sum.
@@ -111,7 +111,7 @@ class Solution:
                 longest = max(longest,length)
             
             if summation not in hashmap : 
-                hashmap[summation] = i    # import, do not update the sum for a newer index, as we need the longest, Hence the left most index 
+                hashmap[summation] = i    # important: do not update the sum for a newer index, as we need the longest, Hence the left most index 
 
         return longest
 
