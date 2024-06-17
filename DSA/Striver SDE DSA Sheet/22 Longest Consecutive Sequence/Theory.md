@@ -112,7 +112,7 @@ if __name__ == "__main__":
 - [Watch it here](https://youtu.be/oO5uLE7EUlM?si=qyRJ8-sPxsZ6ydop&t=775)
 - put all elements into a **set DS**
 - iterate over them one by one.
-- if it's prev is presnet in the DS, don't check further cause it not the start of a seq
+- if it's prev is present in the DS, don't check further cause it not the start of a seq
 - if it's prev not preset, it is start and check of it's previous values till you can't get one.
 - update the longest count
 
