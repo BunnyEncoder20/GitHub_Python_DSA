@@ -23,7 +23,8 @@ def detect_loop(head):
     node_map = {}
     pointer = head
     while pointer != None:
-        if pointer in node_map: return True
+        if pointer in node_map: 
+            return True
         else:
             node_map[pointer] = True
     return False

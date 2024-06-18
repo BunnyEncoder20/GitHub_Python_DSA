@@ -50,7 +50,6 @@ def getKth(temp,k):
 def reverseLL(head):
     back = None
     current = head 
-    front = head.next
 
     while current != None:
         front = current.next

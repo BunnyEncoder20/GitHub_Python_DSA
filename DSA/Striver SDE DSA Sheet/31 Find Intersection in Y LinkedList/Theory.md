@@ -63,8 +63,8 @@ def intersectionPresent(head1,head2):
     
     return None
 ```
-- Time complexity : O(n+m)
-- Space complexity : O(n)   (cause of hash table)
+- **Time complexity : O(n+m)**
+- **Space complexity : O(n)**   (cause of hash table)
 
 <br>
 

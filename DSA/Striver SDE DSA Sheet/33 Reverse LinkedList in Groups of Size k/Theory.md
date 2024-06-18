@@ -7,7 +7,7 @@
 
 <br>
 
-## Approach 
+## The Only Approach 
 
 ### Algorithm 
 
@@ -21,7 +21,6 @@
 ### Code 
 
 ```python 
-# Actual Problem Code
 def kReverse(head,k):
     if k<1 or head is None: return head
     
@@ -57,6 +56,24 @@ def kReverse(head,k):
         temp = next_group_node
     
     return head
+
+def getKth(temp,k):
+    while k != None and k>1:
+        k-=1
+        temp = temp.next
+    return temp
+
+def reverseLL(head):
+    back = None
+    current = head 
+
+    while current != None:
+        front = current.next
+        current.next = back
+        back = current 
+        current = front
+
+    return back 
 ```
-- Time complexity : O(2n) (finding Kth node and reversing the group)
-- Space complexity : O(1)
+- **Time complexity : O(2n)** (finding Kth node and reversing the group)
+- **Space complexity : O(1)**
