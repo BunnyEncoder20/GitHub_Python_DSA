@@ -85,3 +85,24 @@ if __name__ == "__main__":
 
 - **Time complexity : O(n)+O(n) = O(2n)** (both of the while loops)
 - **Space complexity : O(n) + O(n)** (hashmap + answer ll)
+
+<br>
+
+## Optimal Approach 
+
+- We can avoid using the hashmap by making the original nodes point to their copied nodes
+
+### Algorithm
+
+- [Watch it here](https://youtu.be/q570bKdrnlw?si=NDqdI95X1nbc-1SV&t=772)
+- Temp pointing at head
+- Insert the copy nodes in between the temp and temp.next
+- move temp by 2 nodes (to get to the next original node)
+- Reset temp and connect the random pointers 
+- Connecting the next pointers using a dummy_ndoe (for the head), resultant and temp pointers
+
+### Code 
+
+```python
+
+```
