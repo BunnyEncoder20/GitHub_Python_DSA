@@ -169,4 +169,4 @@ if __name__ == "__main__":
     i.print_linked_list(merged_list)
 ```
 - **Time complexity : O(n1+n2)**
-- **Space complexity : O(1)** (cause reused nodes)
+- **Space complexity : O(1)** (cause changed the links only)

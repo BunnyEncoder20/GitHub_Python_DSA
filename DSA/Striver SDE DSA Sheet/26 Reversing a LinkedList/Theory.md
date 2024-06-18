@@ -60,8 +60,8 @@ if __name__ == "__main__":
     reverse_head = i.reverseList(head)
     i.printLinkedList(reverse_head)
 ```
-- Time complexity : O(2n)
-- Space complexity : O(n)
+- **Time complexity : O(2n)**
+- **Space complexity : O(n)**
 
 <br>
 
