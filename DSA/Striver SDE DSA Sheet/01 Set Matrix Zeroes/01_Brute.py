@@ -18,9 +18,6 @@ class Solution:
                 matrix[i][col] = -1
         
     def setZeroes(self, matrix: List[List[int]]) -> None:
-        """
-        Do not return anything, modify matrix in-place instead.
-        """
         rows = len(matrix)
         cols = len(matrix[0])
         

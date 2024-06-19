@@ -229,5 +229,5 @@ flattened = flattenLinkedList(head)
 print("\nFlattened linked list: ")
 printLinkedList(flattened)
 ```
-- **Time Complexity : O(N x 2M) = O(2nm)** (assuming n is horizontal length and m is vertical depth)
+- **Time Complexity : O(n x 2m) = O(2nm)** (assuming n is horizontal length and m is vertical depth)
 - **Space Complexity : O(N)** (stack space)

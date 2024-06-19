@@ -9,9 +9,6 @@ from typing import List
 class Solution:
             
     def setZeroes(self, matrix: List[List[int]]) -> None:
-        """
-        Do not return anything, modify matrix in-place instead.
-        """
         rows = len(matrix)
         cols = len(matrix[0])
         col0 = matrix[0][0]
@@ -20,12 +17,12 @@ class Solution:
         for i in range(rows):
             for j in range(cols):
                 if matrix[i][j] == 0:
-                        matrix[i][0] = 0
-                        
-                        if  j != 0:
-                            matrix[0][j] = 0
-                        else :
-                            col0 = 0
+                    matrix[i][0] = 0
+                    
+                    if  j != 0:
+                        matrix[0][j] = 0
+                    else :
+                        col0 = 0
 
         # Solving the inner matrix elements 
         for i in range(1,rows):

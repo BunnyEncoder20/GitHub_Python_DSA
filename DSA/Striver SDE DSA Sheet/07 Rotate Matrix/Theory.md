@@ -1,6 +1,6 @@
 # Rotate Matrix (Rotate Image)
 
-- Given a matrix of nxn, print what the matrix will be if it were rotated by 90 degrees.
+- Given a matrix of `nxn`, print what the matrix will be if it were rotated by 90 degrees.
 - Eg: 
 ![alt text](mat1.jpg)
 **Input:** matrix = \[[1,2,3],[4,5,6],[7,8,9]]
@@ -75,9 +75,9 @@ if __name__ == "__main__":
   - The Second column = second row BUT in reverse order.
   - The third column = third row BUT in reverse order.
   - The forth column = forth row BUT in reverse order.
-- Hence we need to Transpose the matrix.
+- Hence we need to **Transpose** the matrix and reverse the rows.
 - If we observe then all the elements of the diagonal are the same
-- And all the other elements have swapped places with their diagonal counterpart elements.
+- And all the other elements have basically swapped places with their diagonal counterpart elements.
 
 <br>
 

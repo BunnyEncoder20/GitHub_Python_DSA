@@ -59,7 +59,6 @@ def maximum_subArray(nums):
     maxSum = float('-inf')
     currSum = 0
     
-    
     for i in range(0, len(nums)):
         currSum += nums[i]
 
@@ -75,7 +74,7 @@ if __name__ == '__main__':
     print(maximum_subArray(nums))
 ```
 
-## Follow up Question : Also print the sub array
+### Follow up Question : Also print the sub array
 
 - we can also print the sub array section with the maximum sum by slightly modifying the above code:
 
