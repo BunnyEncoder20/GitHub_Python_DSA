@@ -24,7 +24,7 @@ Explanation: Intervals [1,4] and [4,5] are considered overlapping.
 
 1. Sort the sub intervals (so that close intervals are grouped together)
 2. Iterate over the sub arrays, **if the first element of a sub Interval is less or equal to the last element of the previous sub interval, then they are overlapping**.
-3. In order to accumilate the overlap, we remove the current and previous sub interval and **replace it with a sub interval which contains the first element of the previous sub interval and the lsat element of the current sub interval**.
+3. In order to accumilate the overlap, we remove the current and previous sub interval and **replace it with a sub interval which contains the first element of the previous sub interval and the last element of the current sub interval**.
 4. If the last element of the next sub interval is **not overlapping** (It is greater than the last element of the previous sub interval) then we have gotten our corrected sub interval.
 
 <br>

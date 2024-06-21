@@ -11,7 +11,7 @@
 - We use a greedy approach 
 - This Greedy approach will fail if the previous lesser denominations add up to be greates than the next denomination
 - Eg:
-```
+```python
 denominations = [1,5,6,7]
 V = 11
 Greedy_answer = [9,1,1] = 3 notes
@@ -61,3 +61,8 @@ if __name__ == '__main__':
 ```
 - **Time complexity : O(v)**    (but it will generally take way lesser than that)
 - **Space complexity : O(1)**
+
+<br>
+
+---
+---
