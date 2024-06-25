@@ -48,11 +48,11 @@ class Solution:
             start_interval = intervals[i][0]
             end_interval = intervals[i][1]
 
-            # Check if answer has some interval, if yes then we need to check if the next intervals are within it or not (because they are already processed)
+            # Check if answer has some interval, if current intervals lies within the previously added interval to the ans, we skip these.
             if ans and end_interval<=ans[-1][1]:
                 continue
 
-            # Check the next sub intervals, if overlapping, update the end_interval
+            # Keep updating the end interval till interval breaks
             for j in range(i+1,n):
                 if intervals[j][0] <= end_interval:
                     end_interval = max(end_interval,intervals[j][1])    # Note that sometimes the next intervals can be within the interval, hence we need to check which last element  is greater 
@@ -89,10 +89,6 @@ if __name__ == '__main__':
 ### Code
 
 ```python 
-# Optimal Solution for Sub interval Overlapping 
-# Time Complexity : O(nlogn) + O(n) [sorting + for loops]
-# Space Complexity :  O(n)
-
 from typing import List
 
 class Solution:
@@ -121,3 +117,6 @@ if __name__ == '__main__':
     print(ins.merge(intervals1))
     print(ins.merge(intervals2))
 ```
+<br>
+
+---
