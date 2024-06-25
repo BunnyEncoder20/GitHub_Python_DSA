@@ -1,10 +1,10 @@
-# Subset Sums (Recursive)
+# Subset Sums - I (Recursive)
 
 -  Given an array print all the sum of the subset generated from it, in the increasing order.
 
 <br>
 
-## Brute Force Solution 
+## The Recursive Approach 
 
 ### Algorithm 
 
