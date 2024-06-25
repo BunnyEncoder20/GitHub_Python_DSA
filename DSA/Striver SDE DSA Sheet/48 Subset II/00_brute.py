@@ -4,19 +4,23 @@ class Solution:
     def subsetsWithDup(self,nums:List[int])->List[List[int]]:
         n = len(nums)
         result = set()
-        answer = []
 
         def subsetsHelper(index,current):
             if index==n:
-                # current.sort()
+                current.sort()
                 result.add(tuple(current))
                 return 
+            
+            # one where we pick the number 
             current.append(nums[index])
             subsetsHelper(index+1,current)
+
+            # one where we do not pick the number
             current.pop()
             subsetsHelper(index+1,current)
         
         subsetsHelper(0,[])
+        answer = []
         for element in result:
             answer.append(list(element))
         answer.sort()
