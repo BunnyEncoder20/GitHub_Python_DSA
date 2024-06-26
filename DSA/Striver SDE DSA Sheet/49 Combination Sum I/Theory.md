@@ -79,4 +79,6 @@ if __name__ == "__main__":
             print(ans[i][j], end=" ")
         print()
 ```
-- Time complexity : O()
+- **Time complexity : O(2<sup>n</sup> * k)**
+  - 2<sup>n</sup> for the logarithm recursion 
+  - k = avg length of subLists
