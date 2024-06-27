@@ -34,38 +34,48 @@ Explanation: See Figure
 ```python 
 class Solution:
 
-    def partition(self,string):
+    def palindrome_partitions(self,string):
         ans = []
-        path = []
+        part = []
 
-        def partitionHelper(index):
-            if index == len(string):
-                ans.append(path[:])
-                return 
-            for i in range(index,len(string)):
-                if isPalindrome(index,i,string):
-                    path.append(string[index:i+1])
-                    partitionHelper(i+1)
-                    path.pop()
+        def dfs(i):
+            if i==len(string):
+                ans.append(part[:])
+                return
+            for j in range(i,len(string)):
+                if isPalindrome(i,j,string):
+                    part.append(string[i:j+1])
+                    dfs(j+1)
+                    part.pop()
         
         def isPalindrome(start,end,string):
             while start<=end:
-                if string[start]!=string[end]: 
+                if string[start] != string[end]:
                     return False
                 start+=1
                 end-=1
             return True
 
-        partitionHelper(0)
+        dfs(0)
         return ans
 
 if __name__ == "__main__":
     s = "aabb"
     obj = Solution()
-    ans = obj.partition(s)  
+    ans = obj.palindrome_partitions(s)  
     print("The Palindromic partitions are :-")
     # [['a', 'a', 'b', 'b'], ['a', 'a', 'bb'], ['aa', 'b', 'b'], ['aa', 'bb']]
     print(ans)
 ```
-- Time complexity : O()
-- Space complexity : O()
+- **Time complexity : O(2<sup>n</sup> * n/2 * k)**
+  - O(2<sup>n</sup>) for generating all the combinations
+  - O(n/2) for checking palindrome
+  - O(k) for inserting the substring into ans DS, where k is avg length of substring
+- **Space complexity : O(k*x)**
+  - k is average length of palindrome substring
+  - x is the number of such substrings
+
+<br>
+
+---
+---
