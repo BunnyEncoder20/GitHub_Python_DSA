@@ -8,12 +8,10 @@ from typing import List
 
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        """
-        Do not return anything, modify nums1 in-place instead.
-        """
+        
         nums1[m:] = [nums2[i] for i in range (n)]
         length = m+n
-        gap = (length//2)+(length%2)  # eas way of getting the ceil value after divind even or odd number
+        gap = (length//2)+(length%2)  # easy way of getting the ceil value after dividing even or odd number
 
         while gap>0 : 
             left = 0
