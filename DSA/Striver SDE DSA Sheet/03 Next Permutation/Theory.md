@@ -92,8 +92,8 @@ if __name__ == '__main__':
     print(answer)
 ```
 
----
----
+<br>
+
 ## Brute Force 
 
 - Generate all the possible permutations in **sorted order** (using **recursion**: if the n is number of elements in the list, then the total possible permutations is **n!** )
