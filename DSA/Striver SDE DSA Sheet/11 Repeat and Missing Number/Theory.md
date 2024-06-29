@@ -90,7 +90,7 @@ def repeatedNumber(A):
 5. To solve this equation, we need another equation of x and y.
 6. This time we will sum up the square of the elements : 
 7. S2 = summation of all square of all elements 
-8. Sn2 = summation of all square of n natural numbers `(n*(n+1)*(2n+1) / 6 )`
+8. Sn2 = summation of all square of n natural numbers `(n*(n+1)*(2n+1)) / 6 `
 9. Now we know that:
 > x<sup>2</sup> - y<sup>2</sup> = S2 - Sn2 
 > (x-y)(x+y) = S2 - Sn2 --- (eq 2)
