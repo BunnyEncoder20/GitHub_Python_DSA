@@ -67,4 +67,6 @@ if __name__ == "__main__":
         print()
 ```
 - Time complexity : O(9<sup>n<sup>2</sup></sup>)
-- Space complexity : 
+  - in the extreme worse case in a n<sup>2</sup> board we would have 9 possible numbers
+- Space complexity : O(1)
+  - Cause we didn't use any extra space.
