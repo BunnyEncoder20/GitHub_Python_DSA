@@ -1,5 +1,25 @@
 def solveSudoku(board):
-    pass
+    for i in range(9):
+        for j in range(9):
+            if board[i][j]=='.':
+                for num in '123456789':
+                    if isPlaceable(board,i,j,num):
+                        board[i][j]=num
+                        if solveSudoku(board):
+                            return True
+                        else : 
+                            board[i][j]="."
+                return False             # could not place any number
+    return True                          # No empty place left in the baord
+
+def isPlaceable(board,row,col,num):
+    for k in range(9):
+        # check every col
+        if board[row][k]==num : return False
+        if board[k][col]==num : return False
+        if board[3*(row//3)+(k//3)][3*(col//3)+(k%3)]==num : return False
+    return True
+    
 if __name__ == "__main__":
     board = [
         ["9", "5", "7", ".", "1", "3", ".", "8", "4"],
