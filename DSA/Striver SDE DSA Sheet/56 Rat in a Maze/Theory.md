@@ -70,41 +70,41 @@ class Solution:
        return ans
     
     def solve(self,i,j,matrix,n,stack,visited,ans):
-       if i==n-1 and j==n-1:
-       ans.append(stack)
-       return
+       	if i==n-1 and j==n-1:
+		ans.append(stack)
+		return
        
-       # Downward 
-       if i+1 in range(0,n) and not visited[i+1][j] and matrix[i+1][j]==1:
-       stack+="D"
-       visited[i][j]=1
-       self.solve(i+1,j,matrix,n,stack,visited,ans)
-       stack=stack[:-1]
-       visited[i][j]=0
-       
-       # Left 
-       if j-1 in range(0,n) and not visited[i][j-1] and matrix[i][j-1]==1:
-       stack+="L"
-       visited[i][j]=1
-       self.solve(i,j-1,matrix,n,stack,visited,ans)
-       stack=stack[:-1]
-       visited[i][j]=0
-       
-       # Right
-       if j+1 in range(0,n) and not visited[i][j+1] and matrix[i][j+1]==1:
-       stack+="R"
-       visited[i][j]=1
-       self.solve(i,j+1,matrix,n,stack,visited,ans)
-       stack=stack[:-1]
-       visited[i][j]=0
-       
-       # Upward
-       if i-1 in range(0,n) and not visited[i-1][j] and matrix[i-1][j]==1:
-       stack+="U"
-       visited[i][j]=1
-       self.solve(i-1,j,matrix,n,stack,visited,ans)
-            stack=stack[:-1]
-            visited[i][j]=0
+		# Downward 
+		if i+1<=n and not visited[i+1][j] and matrix[i+1][j]==1:
+			stack+="D"
+			visited[i][j]=1
+			self.solve(i+1,j,matrix,n,stack,visited,ans)
+			stack=stack[:-1]
+			visited[i][j]=0
+            
+        # Left 
+        if j-1>=0 in range(0,n) and not visited[i][j-1] and matrix[i][j-1]==1:
+			stack+="L"
+			visited[i][j]=1
+			self.solve(i,j-1,matrix,n,stack,visited,ans)
+			stack=stack[:-1]
+			visited[i][j]=0
+        
+        # Right
+        if j+1<=n and not visited[i][j+1] and matrix[i][j+1]==1:
+			stack+="R"
+			visited[i][j]=1
+			self.solve(i,j+1,matrix,n,stack,visited,ans)
+			stack=stack[:-1]
+			visited[i][j]=0
+        
+        # Upward
+        if i-1>=0 and not visited[i-1][j] and matrix[i-1][j]==1:
+			stack+="U"
+			visited[i][j]=1
+			self.solve(i-1,j,matrix,n,stack,visited,ans)
+			stack=stack[:-1]
+			visited[i][j]=0
             
 
 if __name__ == '__main__':
@@ -141,3 +141,67 @@ visited[i][j]=0
 <br>
 
 ## Optimized Code (Optimized the directions)
+
+### Algorithm 
+
+- [Watch it here](https://youtu.be/bLGZhJlt4y0?si=_JwZZLLLMlnOj1Zo&t=1270)
+- We can combine all the 4 diffrent directional ifs by combining them under one for loop using the following logic:
+
+![alt text](image3.png)
+
+![alt text](image2.png)
+
+- Now for each direction, we just need to add the displacement to the indexes in the loop : 
+
+```python
+
+class Solution:
+    def findPath(self,matrix,n):
+        ans = []
+        stack = ""
+        visited = [[0 for _ in range(n)] for _ in range(n)]
+        di = [+1,0,0,-1]
+        dj = [0,-1,+1,0]
+        
+        if matrix[0][0]==1:
+            self.solve(0,0,matrix,n,stack,visited,di,dj,ans)
+
+        return ans
+    
+    def solve(self,i,j,matrix,n,stack,visited,di,dj,ans):
+        if i==n-1 and j==n-1:
+            ans.append(stack)
+            return
+        
+        # Combining all the four directional ifs into one
+        direction = "DLRU"
+        for index in range(4):
+            nexti = i+di[index]
+            nextj = j+dj[index]
+            if nexti in range(n) and nextj in range(n) and matrix[nexti][nextj]==1 and not visited[nexti][nextj]:
+                visited[i][j]=1
+
+                # Notice how we are creating a new stack everytime we are making the next recursive function call
+                self.solve(nexti,nextj,matrix,n,stack+direction[index],visited,di,dj,ans)
+                # That also frees us from removing the added direction after the recursive function call
+                
+                visited[i][j]=0
+
+        
+
+if __name__ == "__main__":
+    n = 4
+    m = [[1, 0, 0, 0], [1, 1, 0, 1], [1, 1, 0, 0], [0, 1, 1, 1]]
+    obj = Solution()
+    result = obj.findPath(m, n)
+    if len(result) == 0:
+        print(-1)
+    else:
+        for i in range(len(result)):
+            print(result[i], end=" ")   # DDRDRR DRDDRR
+    print()
+```
+- **Time complexity : O(4<sup>nxm</sup>)**
+  - each cell we are trying 4 direcions 
+- **Space complexity : O(nxm)**
+  - worse case all cells are visited so we would need a nxm visited matrix

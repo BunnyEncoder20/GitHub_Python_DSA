@@ -16,7 +16,7 @@ class Solution:
             return
         
         # Downward 
-        if i+1 in range(0,n) and not visited[i+1][j] and matrix[i+1][j]==1:
+        if i+1<=n and not visited[i+1][j] and matrix[i+1][j]==1:
             stack+="D"
             visited[i][j]=1
             self.solve(i+1,j,matrix,n,stack,visited,ans)
@@ -24,7 +24,7 @@ class Solution:
             visited[i][j]=0
             
         # Left 
-        if j-1 in range(0,n) and not visited[i][j-1] and matrix[i][j-1]==1:
+        if j-1>=0 in range(0,n) and not visited[i][j-1] and matrix[i][j-1]==1:
             stack+="L"
             visited[i][j]=1
             self.solve(i,j-1,matrix,n,stack,visited,ans)
@@ -32,7 +32,7 @@ class Solution:
             visited[i][j]=0
         
         # Right
-        if j+1 in range(0,n) and not visited[i][j+1] and matrix[i][j+1]==1:
+        if j+1<=n and not visited[i][j+1] and matrix[i][j+1]==1:
             stack+="R"
             visited[i][j]=1
             self.solve(i,j+1,matrix,n,stack,visited,ans)
@@ -40,7 +40,7 @@ class Solution:
             visited[i][j]=0
         
         # Upward
-        if i-1 in range(0,n) and not visited[i-1][j] and matrix[i-1][j]==1:
+        if i-1>=0 and not visited[i-1][j] and matrix[i-1][j]==1:
             stack+="U"
             visited[i][j]=1
             self.solve(i-1,j,matrix,n,stack,visited,ans)
