@@ -40,6 +40,7 @@ return ans if n > 0 else 1/ans
 <br>
 
 - **Time Complexity : O(log<sub>2</sub>n)**
+- **Space Complexity : O(1)**
 
 <br>
 
