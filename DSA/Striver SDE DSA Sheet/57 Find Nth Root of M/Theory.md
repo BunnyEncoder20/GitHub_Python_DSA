@@ -47,7 +47,7 @@ def NthRoot1(n,m):
         if i**n > m:
             return -1
 
-# Better way of finding power(base,expo) (less TC = O(log))
+# Better way of finding power(base,expo) ( less TC = O(log(n)) )
 def pow(base,expo):
     ans = 1
     while expo>0:

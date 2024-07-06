@@ -66,13 +66,13 @@ class Solution:
        visited = [[0 for _ in range(4)] for _ in range(4)]
        
        if matrix[0][0]==1:
-       self.solve(0,0,matrix,n,stack,visited,ans)
-       return ans
+        self.solve(0,0,matrix,n,stack,visited,ans)
+        return ans
     
     def solve(self,i,j,matrix,n,stack,visited,ans):
        	if i==n-1 and j==n-1:
-		ans.append(stack)
-		return
+            ans.append(stack)
+            return
        
 		# Downward 
 		if i+1<=n and not visited[i+1][j] and matrix[i+1][j]==1:
@@ -128,7 +128,7 @@ if __name__ == '__main__':
 # Upward
 if i-1 in range(0,n) and not visited[i-1][j] and matrix[i-1][j]==1:
 visited[i][j]=1
-self.solve(i-1,j,matrix,n,stack,visited,ans)
+self.solve(i-1,j,matrix,n,stack+'U',visited,ans)
 visited[i][j]=0
 ```
 - Thus reducing the footprint of the function
