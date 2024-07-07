@@ -30,6 +30,7 @@ Explanation:
 ### Algorithm 
 
 - [Watch it here](https://youtu.be/AZOmHuHadxQ?si=s2y8-RiHJ-ICvcGo&t=94)
+- We basically linear search the array
 - If we are at a index i then i-1 or i+1 should have the same element
 - If not, then we return that element cause it is single
 

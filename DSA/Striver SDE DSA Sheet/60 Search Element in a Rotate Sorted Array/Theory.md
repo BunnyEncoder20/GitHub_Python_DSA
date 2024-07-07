@@ -23,6 +23,7 @@ Explanation: Here, the target is 3. Since 3 is not present in the given rotated 
 
 ### Algorithm
 
+- [Watch it here](https://youtu.be/5qGrJbHhqFs?si=7_VcpzGNMARlakYm&t=107)
 - Linear search algorithm 
 
 ### Code 
@@ -54,6 +55,7 @@ if __name__ == "__main__":
 
 ### Algorithm
 
+- [Watch it here](https://youtu.be/5qGrJbHhqFs?si=imABS-afJZZEOI83&t=216)
 1. We will use Binary Search to identify a mid 
 2. Before we eliminate one of the halfs because the element doesn't lie in that range, we need to ensure that half of the array is sorted.
 3. Hence we need to identify the sorted half first, then check for the element in that half.

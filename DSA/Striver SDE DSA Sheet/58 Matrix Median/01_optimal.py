@@ -23,6 +23,9 @@ def median(matrix,m,n):
     return low
 
 def BlackBox(matrix,n,m,mid):
+    '''
+    returns the number of elements in the matrix <= mid
+    '''
     count=0
     # go row wise and BS the row for upper bound of mid
     # Upper bound will retunr the index of the number just greator than mid
