@@ -141,4 +141,49 @@ if __name__=="__main__":
 1. The definition of Ceil is exactly same as lower bound. 
 2. Hence a simple lower bound function for Ceil
 3. The change being that we need to return the number here (for both floor and ceil)
-4. For floor, we will have change out lower bound implementation a little bit 
+4. For floor, we will have change out lower bound implementation a little bit (just change the sign, rest is the same)
+
+### Code
+
+```python
+def calc_floor(arr,n,target):
+    low = 0
+    high = n-1
+    ans = -1
+    
+    while low<=high:
+        mid = (low+high)//2
+        if arr[mid]<=target:
+            ans = arr[mid]
+            low = mid+1
+        else:
+            high = mid-1
+    
+    return ans
+
+def calc_ceil(arr,n,target):
+    low = 0 
+    high = n-1
+    ans = -1
+    
+    while low<=high:
+        mid = (low+high)//2
+        if target<=arr[mid]:
+            ans = arr[mid]
+            high = mid-1
+        else :
+            low = mid+1
+
+    return ans
+
+if __name__ == "__main__":
+    arr = [10,20,30,40,50]
+    xs = [25,20]
+    for x in xs:
+        floor = calc_floor(arr,len(arr),x)
+        ceil = calc_ceil(arr,len(arr),x)
+        print("Floor value is : ",floor)
+        print("Ceil value is : ",ceil)
+```
+- **Time complexity : O(log<sub>2</sub>N)**
+- **Space complexity : O(1)**

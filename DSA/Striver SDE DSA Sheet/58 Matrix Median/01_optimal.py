@@ -4,6 +4,7 @@ def median(matrix,m,n):
 
     # Assign low and high values 
     # By checking the first and last col elements of the matrix
+    # cuase the rows are sorted, the lowest values will be in col[0] and highest values of the rows will be in col[n-1]
     for i in range(m):
         low = min(low,matrix[i][0])
         high = max(high,matrix[i][n-1])
@@ -14,15 +15,18 @@ def median(matrix,m,n):
     # Binary Search
     while low<=high:
         mid = (low+high)//2
-        elements_less_than_equal = count_element_less_than_equal(matrix,n,m,mid)
+        elements_less_than_equal = BlackBox(matrix,n,m,mid)
         if elements_less_than_equal <= req:
             low = mid+1
         else:
             high = mid-1
     return low
 
-def count_element_less_than_equal(matrix,n,m,mid):
+def BlackBox(matrix,n,m,mid):
     count=0
+    # go row wise and BS the row for upper bound of mid
+    # Upper bound will retunr the index of the number just greator than mid
+    # This giving is the exact count of elements <= mid
     for i in range(m):
         count+=upperBound(matrix[i],n,mid)
     return count
@@ -34,12 +38,10 @@ def upperBound(arr,n,x):
 
     while low<=high:
         mid=(low+high)//2
-        # maybe an answer 
         if arr[mid]>x:
-            ans = mid 
-            # looking for a smaller index on the left 
+            ans = mid       # maybe an answer 
             high=mid-1
-        else:
+        else:               # looking for a smaller index on the left 
             low = mid+1
     return ans
 

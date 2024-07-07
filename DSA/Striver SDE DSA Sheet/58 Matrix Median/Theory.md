@@ -1,5 +1,9 @@
 # Median of Row Wise Sorted Matrix
 
+- **Pre-requesites : Upper and Lower Bound (61 dir)**
+
+<br>
+
 - Given a row-wise sorted matrix of size MXN, where M is no. of rows and N is no. of columns, find the **median** (element right at the center if we convert the 2D matrix into a sorted array) in the given matrix.
 - The rows of the Matrix are sorted. 
 - Note: `MxN` is odd. When both n and m are odd, the product will always be odd
@@ -35,7 +39,7 @@ Explanation:  If we find the linear sorted array, the array becomes 1 1 2 2 3 3 
 ### Algorithm
 
 - [Watch it here](https://youtu.be/Q9wXgdxJq48?si=MsO0ap9L7W1xWxCT&t=116)
-- Conver the matrix into a 1D array and sort it
+- Convert the matrix into a 1D array and sort it
 - The element at [n*m//2] index will be the median.
 
 ### Code
@@ -74,14 +78,15 @@ if __name__=="__main__":
 
 - The key thing to observe / remember here is : 
 ```
-no. of elements (before/left of/less than) median > n*m//2 always
+no. of elements (before/left of/less than equal) to median > n*m//2 always
 ```
-- Which basically implies
+- Which basically implies 
 ```
 [no. of elements <= median] > (n*m)//2
 ```
 - [Watch it here](https://youtu.be/Q9wXgdxJq48?si=L0D9419km7dTbVEK&t=292)
-- we need to get the first number which has [elements<=it] > (n*m)//2
+- we need to get the first occurance of element which has [elements<=it] > (n*m)//2
+- Basically we have to upper bound the number which has elements lesser than equal to itself array with (n*m)//2
 
 ### Code 
 
