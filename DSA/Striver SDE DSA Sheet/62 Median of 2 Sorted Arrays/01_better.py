@@ -27,12 +27,25 @@ def median(arr1, arr2):
             count+=1
             right+=1
 
-    # Do we really need these ?
-    # if left<=n1:
-    #     arr3.extend(arr1[left:])
-    # if right<=n2:
-    #     arr3.extend(arr2[right:])
-    
+    if not ele1 and not ele2:
+        # Do we really need these ? Yes we do. Think about arrays of very unequal sizes
+        while left<=n1:
+            if count==idx1 : 
+                ele1 = arr1[left]
+            if count==idx2 : 
+                ele2 = arr1[left]
+                break    
+            left+=1
+            count+=1
+        while right<=n2:
+            if count==idx1 : 
+                ele1 = arr2[right]
+            if count==idx2 : 
+                ele2 = arr2[right]
+                break
+            right+=1
+            count+=1
+        
     # Finding the median in the arr3
     if n%2==1:
         return float(ele2)
