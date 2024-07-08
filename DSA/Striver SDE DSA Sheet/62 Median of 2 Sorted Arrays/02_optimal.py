@@ -4,6 +4,11 @@ def median(arr1,arr2):
 
     # To ensure that the smallest array is arr1
     if n1>n2 : return median(arr2, arr1)
+    
+    # Edge case when one (will the the first array) is empty 
+    if n1==0:
+        if n2%2==1 : return float(nums2[n2//2])
+        else : return float(nums[n2//2]+nums2[(n2//2)-1])/2.0
 
     low = 0
     high = n1 
@@ -39,6 +44,8 @@ def median(arr1,arr2):
     return 0 
 
 if __name__ == "__main__":
-    a = [1, 4, 7, 10, 12]
-    b = [2, 3, 6, 15]
+    # a = [1, 4, 7, 10, 12]
+    # b = [2, 3, 6, 15]
+    a = []
+    b = [1]
     print("The median of two sorted arrays is", "{:.1f}".format(median(a, b)))
