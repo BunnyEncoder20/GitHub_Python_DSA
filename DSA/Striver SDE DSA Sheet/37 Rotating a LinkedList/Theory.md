@@ -77,7 +77,7 @@ if __name__ == '__main__':
     print("After", k, "iterations: ", end='')
     printList(newHead)  # list after rotating nodes
 ```
-- **Time Complexity : O(Number of nodes present in the list*k)**
+- **Time Complexity : O(Number of nodes present in the list x k)**
 - **Space Complexity : O(1)**
 
 <br>
@@ -116,15 +116,15 @@ def rotateRight(head,k):
         pointer = pointer.next
 
     # Calc required k
-    required_k = k % length
+    k_actual = k % length
     # connect last node to head 
     pointer.next = head 
-    # calc end index
-    end = length-required_k
+    # calc new head index
+    new_head = length-k_actual
 
     # get to the end node
     pointer = head 
-    for i in range(end-1):
+    for i in range(new_head-1):
         pointer = pointer.next
     head = pointer.next
     pointer.next = None
@@ -173,4 +173,6 @@ if __name__ == '__main__':
     printList(newHead)  # list after rotating nodes
 ```
 - **Time complexity : O(n) + O(n - n%k) = O(n)**
+  - O(n) for finding the length 
+  - O(n-n%k) for traversing to the end node (length - k%length)
 - **Space complexity : O(1)**
