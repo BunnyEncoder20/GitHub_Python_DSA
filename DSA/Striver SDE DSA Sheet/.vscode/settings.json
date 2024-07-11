@@ -1,3 +1,5 @@
 {
-    "markdown.preview.fontFamily": "JetBrains Mono"
+    "markdown.preview.fontFamily": "JetBrains Mono",
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontSize": 15
 }

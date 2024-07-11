@@ -1,19 +1,18 @@
 class Stack:
     def __init__(self) -> None:
-        self.top = -1
         self.queue = []
         
     def push(self,x:int) -> None:
-        self.top+=1
         self.queue.append(x)
+        for i in range(len(self.queue)-1):
+            self.queue.append(self.queue.pop(0))
     
     def pop(self) -> None: 
-        x = self.queue.pop(self.top)
-        self.top-=1
+        x = self.queue.pop(0)
         return x
     
     def get_top(self) -> int:
-        return self.queue[self.top]
+        return self.queue[0]
     def get_size(self) -> int:
         return len(self.queue)
 
