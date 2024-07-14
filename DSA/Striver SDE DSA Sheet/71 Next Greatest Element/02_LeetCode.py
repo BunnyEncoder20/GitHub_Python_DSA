@@ -30,7 +30,7 @@ class Solution:
         return ans
 
 if __name__ == '__main__':
-    nums1 = [4,1,2]
+    nums1 = [4,2,1]
     nums2 = [1,3,4,2]
     res = Solution().nextGreaterElement(nums1,nums2)
     print(*res) # -1 3 -1
