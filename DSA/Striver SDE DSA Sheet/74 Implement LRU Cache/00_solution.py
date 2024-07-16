@@ -45,9 +45,11 @@ class LRUCache:
             remove_node(existing_node)
         if len(hashmap)==self.size:
             del hashmap[tail.prev.key]
-            remove_node(tail.prev)
+            remove_node(tail.prev.mode)
         
         # Inserting the new node 
         new_node = Node(key,value)
         add_node(new_Node)
         hashmap[key] = head.next
+        if:
+        hello there
