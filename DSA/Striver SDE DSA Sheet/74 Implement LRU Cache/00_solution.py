@@ -51,5 +51,4 @@ class LRUCache:
         new_node = Node(key,value)
         add_node(new_Node)
         hashmap[key] = head.next
-        if:
-        hello there
+        
