@@ -2,7 +2,7 @@ class Solution:
     def countOddDigits(self, n):
         # trivial case
         if n == 0:
-            return 1
+            return 0
 
         count = 0
         num = n
