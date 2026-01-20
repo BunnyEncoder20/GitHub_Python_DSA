@@ -1,5 +1,5 @@
 class Solution:
-    def moveZeroes(self, nums):
+    def bruteMoveZeroes(self, nums):
         # copy over the non zero elements first
         temp = [n for n in nums if n != 0]
 
@@ -13,7 +13,20 @@ class Solution:
 
         return nums
 
+    def optimalMoveZeroes(self, nums):
+        j = 0  # points to where the non zero element should be placed
+
+        for i in range(len(nums)):
+            if nums[i] != 0:
+                nums[i], nums[j] = nums[j], nums[i]
+                j += 1
+
+        return nums
+
 
 if __name__ == "__main__":
-    print(Solution().moveZeroes([0, 1, 4, 0, 5, 2]))
-    print(Solution().moveZeroes([0, 0, 0, 1, 3, -2]))
+    print(Solution().bruteMoveZeroes([0, 1, 4, 0, 5, 2]))
+    print(Solution().bruteMoveZeroes([0, 0, 0, 1, 3, -2]))
+
+    print(Solution().optimalMoveZeroes([0, 1, 4, 0, 5, 2]))
+    print(Solution().optimalMoveZeroes([0, 0, 0, 1, 3, -2]))
