@@ -22,7 +22,7 @@ def better_caesar_cipher(str, shift)
 
     # 3. calucale the shifted ascii and make into that char
     ((ch.ord - base + shift) % 26 + base).chr
-end.join
+  end.join
 end
 
 puts(caesar_cipher('What a string!', 5))
