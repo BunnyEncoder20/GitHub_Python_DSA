@@ -68,3 +68,9 @@ results = votes.each_with_object(Hash.new(0)) do |vote, result|
 end
 
 puts results
+
+# As we might have seen before, if we want to directly rewrite the original array or hash,
+# we can use the ! operator with most enumerable methods.
+friends = %w[Bunny Soma Bunnu Hoods Chaitanya Ammar Rihan Darpan]
+friends.map! { |friend| friend.upcase }
+puts friends.join(', ')
