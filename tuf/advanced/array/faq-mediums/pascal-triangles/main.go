@@ -28,6 +28,12 @@ func pascalTriangles1(r, c int) int {
 }
 
 func pascalTriangles2(row int) []int {
+	// trivial case
+	if row <= 0 {
+		return []int{}
+	}
+
+	// init
 	res := make([]int, row)
 	if row > 0 {
 		res[0] = 1 // first and last element of each row is always 1
@@ -38,6 +44,14 @@ func pascalTriangles2(row int) []int {
 	}
 
 	return res
+}
+
+func pascalTriangles3(n int) [][]int {
+	result := make([][]int, n)
+	for i := range n {
+		result[i] = pascalTriangles2(i + 1)
+	}
+	return result
 }
 
 func main() {
@@ -52,4 +66,7 @@ func main() {
 	fmt.Println(pascalTriangles2(6))
 
 	fmt.Println("\nPascal Triangles 3:")
+	fmt.Println(pascalTriangles3(3))
+	fmt.Println(pascalTriangles3(4))
+	fmt.Println(pascalTriangles3(5))
 }
