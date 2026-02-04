@@ -4,7 +4,6 @@ class Solution:
             for j in range(0, i):
                 if nums[j] > nums[j + 1]:
                     nums[j], nums[j + 1] = nums[j + 1], nums[j]
-                print(nums)  # Debug: Print the array after each swap
         return nums
 
 
