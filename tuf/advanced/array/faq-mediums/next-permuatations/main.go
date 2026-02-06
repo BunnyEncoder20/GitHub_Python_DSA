@@ -72,10 +72,47 @@ func bruteNextPermutation(nums []int) []int {
 	return res
 }
 
-func optimalNextPermutation(nums []int) []int {
-	res := make([]int, 0, len(nums))
+func reversed(s []int) []int {
+	n := len(s)
+	for i, j := 0, n-1; i < j; i, j = i+1, j-1 {
+		s[i], s[j] = s[j], s[i]
+	}
+	return s
+}
 
-	return res
+func optimalNextPermutation(nums []int) {
+	// Longer prefix match, means theh words (or slices in this case) are closer.
+	// 1. find the breaking point (where the values start to dip down)
+	// 2. find amoung the values which we can change the number which is JUST greater than breaking point number (so that we get the very next Permutation)
+	// 3. Trying to place the values is sorted order to get the very next possible permutation
+	n := len(nums)
+
+	// finding the dip point
+	dipIdx := -1
+	for i := n - 2; i >= 0; i-- {
+		if nums[i] < nums[i+1] {
+			dipIdx = i
+			break
+		}
+	}
+
+	// edge case (there was no dip, sorted in decreasing order)
+	if dipIdx == -1 {
+		reversed(nums)
+		return
+	}
+
+	// finding the element just greater than the dip element
+	for i := n - 1; i > dipIdx; i-- {
+		if nums[i] > nums[dipIdx] {
+			// swap these two places
+			nums[i], nums[dipIdx] = nums[dipIdx], nums[i]
+			break
+		}
+	}
+
+	// reverse the elements before the dipIdx to get the immedeate next permutation
+	reversed(nums[dipIdx+1:])
 }
 
 func main() {
@@ -89,7 +126,9 @@ func main() {
 
 	fmt.Println("Optimal Approch:")
 	fmt.Print("Given array: ", nums1)
-	fmt.Println(" | Next Permutations: ", optimalNextPermutation(nums1))
+	optimalNextPermutation(nums1)
+	fmt.Println(" | Next Permutations: ", nums1)
 	fmt.Print("Given array: ", nums2)
-	fmt.Println(" | Next Permutations: ", bruteNextPermutation(nums2))
+	optimalNextPermutation(nums2)
+	fmt.Println(" | Next Permutations: ", nums2)
 }
