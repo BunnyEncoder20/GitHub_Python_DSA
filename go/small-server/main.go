@@ -38,11 +38,10 @@ func handleRoot(writer http.ResponseWriter, req *http.Request) {
 
 func createUser(writer http.ResponseWriter, req *http.Request) {
 	// We decode the incoming req.body.json so that Go can process the data
-	var user User
-	err := json.NewDecoder(req.Body).Decode(&user)
 	// The body's user structure should match the User struct which we defined above,
 	// otherwise the decoding will fail and we will return a bad request error to the client
-	if err != nil {
+	var user User
+	if err := json.NewDecoder(req.Body).Decode(&user); err != nil {
 		http.Error(writer, err.Error(), http.StatusBadRequest)
 	}
 
@@ -52,6 +51,9 @@ func createUser(writer http.ResponseWriter, req *http.Request) {
 	}
 
 	// writer to the local map db
+	// WARN: Remember that this is not thread sage, so if we have multiple requests coming in at the same time,
+	// This would cause unpredictable behavior, and we would need to use a mutex to lock the map while we are writing to it,
+	// or we can use a concurrent map implementation like sync.Map
 	userCache[len(userCache)+1] = user
 	fmt.Println("Users:\n", userCache)
 
