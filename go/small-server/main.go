@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 	"sync"
@@ -30,12 +31,14 @@ func main() {
 
 	// Basic http verb handlers
 	mux.HandleFunc("POST /", createUser)
+	mux.HandleFunc("GET /user/", getAllUsers)
 	mux.HandleFunc("GET /user/{id}", getUser)
+	mux.HandleFunc("DELETE /user/{id}", deleteUser)
 
 	// Starting the server on port 8080, and passing in the request multiplexer to handle incoming requests
-	fmt.Println("Server is running on port 8080...")
+	log.Println("Server is running on port 8080...")
 	if err := http.ListenAndServe(":8080", mux); err != nil {
-		fmt.Printf("the server stop bro:\n%s", err.Error())
+		log.Printf("the server stop bro:\n%s", err.Error())
 	}
 }
 
@@ -66,6 +69,7 @@ func createUser(writer http.ResponseWriter, req *http.Request) {
 	// writer to the local map db
 	cacheMutex.Lock()
 	userCache[len(userCache)+1] = user
+	log.Printf("User with name:%s created successfully\n", user.Name)
 	cacheMutex.Unlock()
 
 	writer.WriteHeader(http.StatusNoContent)
@@ -89,7 +93,7 @@ func getUser(writer http.ResponseWriter, req *http.Request) {
 	}
 
 	// send back the data
-	fmt.Printf("Hello %s", user.Name)
+	log.Printf("user %s found\n", user.Name)
 	userjson, err := json.Marshal(user) // Marshal() created a copy of the user struct as a slice of bytes.
 	if err != nil {
 		http.Error(writer, err.Error(), http.StatusInternalServerError)
@@ -105,5 +109,58 @@ func getUser(writer http.ResponseWriter, req *http.Request) {
 	if _, err := writer.Write(userjson); err != nil {
 		// BUG: most likely you cannot do this cause the http.header of ok is already sent
 		http.Error(writer, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+func deleteUser(w http.ResponseWriter, r *http.Request) {
+	// getting the id from the path param
+	id, err := strconv.Atoi(r.PathValue("id"))
+	if err != nil {
+		http.Error(w, "Invalid user ID", http.StatusBadRequest)
+		return
+	}
+
+	// remove the user from the map
+	cacheMutex.Lock()
+	user, ok := userCache[id]
+	if ok {
+		delete(userCache, id)
+		log.Printf("User with ID:%d | name:%s deleted successfully\n", id, user.Name)
+	}
+	cacheMutex.Unlock()
+
+	if !ok {
+		http.Error(w, "User does not exist", http.StatusNotFound)
+		return
+	}
+
+	// sending back the deleted user data as a response
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	err = json.NewEncoder(w).Encode(user)
+	if err != nil {
+		log.Printf("Error encoding user data: %v\n", err)
+		return
+	}
+}
+
+func getAllUsers(w http.ResponseWriter, req *http.Request) {
+	// I am making a copy of the map so that it doesn't change while reading it,
+	// and can also unlock it as soon as we are done copying it, which allows other operations to happen on the map while we are processing the data.
+
+	cacheMutex.Lock()
+	users := make([]User, 0, len(userCache))
+
+	for _, user := range userCache {
+		users = append(users, user)
+	}
+	cacheMutex.Unlock()
+
+	// sending back the data
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	err := json.NewEncoder(w).Encode(users)
+	if err != nil {
+		log.Printf("Error while encoding users data: %v\n", err)
 	}
 }
