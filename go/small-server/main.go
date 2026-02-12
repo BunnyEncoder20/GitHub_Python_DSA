@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"sync"
 )
 
 type User struct {
@@ -11,6 +12,10 @@ type User struct {
 }
 
 var userCache = make(map[int]User)
+
+// mutux for thread safety: This one is a read and write lock
+// Prevents both reading and writing from happening at the same time.
+var cacheMutex sync.RWMutex
 
 func main() {
 	// First we need a request multiplexer to route incoming requests to the appropriate handler functions
@@ -51,10 +56,9 @@ func createUser(writer http.ResponseWriter, req *http.Request) {
 	}
 
 	// writer to the local map db
-	// WARN: Remember that this is not thread sage, so if we have multiple requests coming in at the same time,
-	// This would cause unpredictable behavior, and we would need to use a mutex to lock the map while we are writing to it,
-	// or we can use a concurrent map implementation like sync.Map
+	cacheMutex.Lock()
 	userCache[len(userCache)+1] = user
+	cacheMutex.Unlock()
 	fmt.Println("Users:\n", userCache)
 
 	writer.WriteHeader(http.StatusNoContent)
