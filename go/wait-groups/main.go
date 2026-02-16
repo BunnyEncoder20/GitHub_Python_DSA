@@ -2,36 +2,73 @@ package main
 
 import (
 	"fmt"
-	"net/http"
+	"log"
+	"math/rand/v2"
 	"sync"
 	"time"
 )
 
-func getStatusCode(link string) {
-	res, error := http.Get(link)
-	if error != nil {
-		fmt.Println("There was a error while making the request to ", link)
-		panic(error)
-	}
+var statusCode = [10]int{200, 202, 203, 400, 403, 404, 409, 500, 501, 502}
 
-	fmt.Printf("Status code: %d returned from %s\n", res.StatusCode, link)
+func simNetworkCall() (int, string) {
+	// sleep for random time between range [0, 30)
+	time.Sleep(time.Second * time.Duration(rand.IntN(3)))
+	randIdx := rand.IntN(len(statusCode))
+	code := statusCode[randIdx]
+	err := ""
+	if code > 500 {
+		err = "There was a internal server"
+	}
+	return code, err
 }
 
-var wg sync.WaitGroup
+func getStatusCodeNormal(link string) {
+	log.Printf("requesting %s ...\n", link)
+	code, error := simNetworkCall()
+	if error != "" {
+		log.Println(error)
+	}
+	log.Printf("Status code: %d returned from %s\n", code, link)
+}
+
+func getStatusCode(link string, wg *sync.WaitGroup) {
+	log.Printf("requesting %s ...\n", link)
+	code, error := simNetworkCall()
+	if error != "" {
+		log.Println("There was a error while making the request to ", link)
+	}
+
+	log.Printf("Status code: %d returned from %s\n", code, link)
+	wg.Done()
+}
 
 func main() {
-	links := []string{
-		"https://youtube.com",
-		"https://google.com",
-		"https://facebook.com",
-		"https://twitter.com",
-		"https://linkedin.com",
-		"https://github.com",
-	}
+	callLinksSequentially()
+	callLinksViaGoroutines()
+}
 
+func callLinksSequentially() {
 	start := time.Now()
-	for _, link := range links {
-		getStatusCode(link)
+	for _, link := range Links {
+		getStatusCodeNormal(link)
 	}
 	fmt.Printf("Time taken by sequentially to get status code for all links: %s s\n", time.Since(start))
+	fmt.Println("-----------------------------------------------------------")
+	fmt.Println("-----------------------------------------------------------")
+	fmt.Println("-----------------------------------------------------------")
+}
+
+func callLinksViaGoroutines() {
+	// wait group init
+	var wg sync.WaitGroup
+	wg.Add(len(Links)) // number of threads we want to wait for
+
+	start := time.Now()
+	for _, link := range Links {
+		go getStatusCode(link, &wg) // go func makes a GoRoutine, which will execute that function in a separate thread
+	}
+
+	// wait group should wait for all threads before exiting the main thread
+	wg.Wait()
+	fmt.Printf("Time taken by GoRoutine to get status code for all links: %s s\n", time.Since(start))
 }
