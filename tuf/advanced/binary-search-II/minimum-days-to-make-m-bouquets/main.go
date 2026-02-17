@@ -24,6 +24,28 @@ func getMinimumDays(totalRoses int, rosesBloomsOn []int, requiredBouquets int, r
 	return -1 // just backup
 }
 
+func optimalGetMinimumDays(n int, nums []int, m int, k int) int {
+	// edge case
+	if k*m > n {
+		return -1
+	}
+
+	// cause the fn(day) = numBouquet > m is an monotonic increase func,
+	// we can run binary search on this shiz
+	low, high := slices.Min(nums), slices.Max(nums)
+
+	for low <= high {
+		mid := low + (high-low)/2 // to prevent int overflow
+		numBouquet := howManyBouquets(nums, mid, k)
+		if numBouquet >= m {
+			high = mid - 1
+		} else {
+			low = mid + 1
+		}
+	}
+	return low // when to not send this
+}
+
 func howManyBouquets(rosesBloomsOn []int, day int, rosesPerBouquet int) int {
 	numBouquet, counter := 0, 0
 
@@ -45,8 +67,11 @@ func howManyBouquets(rosesBloomsOn []int, day int, rosesPerBouquet int) int {
 func main() {
 	n, nums, m, k := 8, []int{7, 7, 7, 7, 13, 11, 12, 7}, 2, 3 // 12
 	fmt.Printf("Minimum number of days needed to make %d bouquets is %d\n", m, getMinimumDays(n, nums, m, k))
+	fmt.Printf("Minimum number of days needed to make %d bouquets is %d\n", m, optimalGetMinimumDays(n, nums, m, k))
 	n, nums, m, k = 5, []int{1, 10, 3, 10, 2}, 3, 2 // -1
 	fmt.Printf("Minimum number of days needed to make %d bouquets is %d\n", m, getMinimumDays(n, nums, m, k))
+	fmt.Printf("Minimum number of days needed to make %d bouquets is %d\n", m, optimalGetMinimumDays(n, nums, m, k))
 	n, nums, m, k = 5, []int{1, 10, 3, 10, 2}, 3, 1
 	fmt.Printf("Minimum number of days needed to make %d bouquets is %d\n", m, getMinimumDays(n, nums, m, k))
+	fmt.Printf("Minimum number of days needed to make %d bouquets is %d\n", m, optimalGetMinimumDays(n, nums, m, k))
 }
