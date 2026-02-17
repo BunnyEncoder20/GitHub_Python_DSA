@@ -72,3 +72,16 @@ func callLinksViaGoroutines() {
 	wg.Wait()
 	fmt.Printf("Time taken by GoRoutine to get status code for all links: %s s\n", time.Since(start))
 }
+
+func optimalCallLinksViaGoroutines() {
+	var wg sync.WaitGroup
+
+	for _, link := range Links {
+		wg.Add(1) // add one thread to wait group for each link
+
+		go func(link string) {
+			defer wg.Done()           // mark the thread as done when the function returns
+			getStatusCodeNormal(link) // with this way of architecture, we don't need to change the business logic of getStatusCodeNormal, we can reuse it as it is, and we don't need to pass the wait group to it, which is a better design
+		}(link) // IIFE: immediately invoked function expression, we need to pass the link as an argument to avoid closure issue
+	}
+}
