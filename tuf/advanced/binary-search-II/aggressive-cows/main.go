@@ -5,7 +5,7 @@ import (
 	"slices"
 )
 
-func aggressiveCows(nums []int, k int) int {
+func bruteAggressiveCows(nums []int, k int) int {
 	slices.Sort(nums)
 	maxMinimumDistance := 0
 	for distance := 1; distance < slices.Max(nums); distance++ {
@@ -19,6 +19,26 @@ func aggressiveCows(nums []int, k int) int {
 	return maxMinimumDistance
 }
 
+func optimalAggressiveCows(nums []int, k int) int {
+	slices.Sort(nums)
+
+	// cause the nums (positions) are processed in a sorted manner,
+	// And the fn(distance) = canPlaceCows(distance) > numCows is a Monotonic func
+	// we can apply binary serach
+	low, high := 1, slices.Max(nums)
+
+	for low <= high {
+		mid := low + (high-low)/2
+		if canPlace(nums, mid, k) {
+			low = mid + 1
+		} else {
+			high = mid - 1
+		}
+	}
+
+	return high // we are looking for the last true
+}
+
 func canPlace(positions []int, minDistance int, numCows int) bool {
 	// At the start, we always place the first cow at first available positions
 	countPlaced, lastPlacedAt := 1, positions[0]
@@ -28,23 +48,23 @@ func canPlace(positions []int, minDistance int, numCows int) bool {
 		if positions[i]-lastPlacedAt >= minDistance {
 			lastPlacedAt = positions[i]
 			countPlaced++
-			// probably could just return true from here,
-			// as soon as countPlaced == numCows
+			if countPlaced == numCows {
+				return true // we were able to place all cows while maintaining minDistance
+			}
 		}
 	}
 
-	if countPlaced >= numCows {
-		return true // we were able to place all cows while maintaining minDistance
-	} else {
-		return false // we were not able to place all the cows for the distance given
-	}
+	return false // we were not able to place all the cows for the distance given
 }
 
 func main() {
 	k, nums := 4, []int{0, 3, 4, 7, 10, 9} // 3
-	fmt.Printf("The maximum possible minimum distance for positions %v between any two cows will be %d\n", nums, aggressiveCows(nums, k))
+	fmt.Printf("The maximum possible minimum distance for positions %v between any two cows will be %d\n", nums, bruteAggressiveCows(nums, k))
+	fmt.Printf("The maximum possible minimum distance for positions %v between any two cows will be %d\n", nums, optimalAggressiveCows(nums, k))
 	k, nums = 2, []int{4, 2, 1, 3, 6} // 5
-	fmt.Printf("The maximum possible minimum distance for positions %v between any two cows will be %d\n", nums, aggressiveCows(nums, k))
+	fmt.Printf("The maximum possible minimum distance for positions %v between any two cows will be %d\n", nums, bruteAggressiveCows(nums, k))
+	fmt.Printf("The maximum possible minimum distance for positions %v between any two cows will be %d\n", nums, optimalAggressiveCows(nums, k))
 	k, nums = 3, []int{10, 1, 2, 7, 5} //
-	fmt.Printf("The maximum possible minimum distance for positions %v between any two cows will be %d\n", nums, aggressiveCows(nums, k))
+	fmt.Printf("The maximum possible minimum distance for positions %v between any two cows will be %d\n", nums, bruteAggressiveCows(nums, k))
+	fmt.Printf("The maximum possible minimum distance for positions %v between any two cows will be %d\n", nums, optimalAggressiveCows(nums, k))
 }
