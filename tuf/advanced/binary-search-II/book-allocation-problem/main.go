@@ -46,9 +46,9 @@ func optimalFindPages(pagesInBook []int, numStudents int) int {
 	return low // we are looking for first true
 }
 
-func getTotalSumAndMax(pages []int) (int, int) {
+func getTotalSumAndMax(pagesInBook []int) (int, int) {
 	total, maxPages := 0, -1<<63
-	for _, pages := range pages {
+	for _, pages := range pagesInBook {
 		total += pages
 		if pages > maxPages {
 			maxPages = pages
