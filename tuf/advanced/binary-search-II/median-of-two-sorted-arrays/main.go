@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func bruteMedian(arr1 []int, arr2 []int) float64 {
 	l1, l2 := len(arr1), len(arr2)
@@ -96,6 +99,63 @@ func betterMedian(arr1 []int, arr2 []int) float64 {
 	} else {
 		return float64(ele1+ele2) / 2.0
 	}
+}
+
+func optimalMedian(arr1 []int, arr2 []int) float64 {
+	// NOTE: This is based on valid symmetry: we try to contruct the 2 halfs of the combines array
+	// by selecting some number of elements from both array. There will be only one such config
+	// which would yield a sorted result. We Binary search that config.
+	// Median we will get from the greates element on the left and least element on the right. (at least for even  elements)
+	len1, len2 := len(arr1), len(arr2)
+	total := len1 + len2
+	leftSideNeeded := (total + 1) / 2
+	low, high := 0, min(len1, len2)
+
+	for low <= high {
+		// mid1 -> I want these many from arr1 on left side
+		// mid2 -> I want these many from arr2 on let side
+		mid1 := low + (high-low)/2
+		mid2 := leftSideNeeded - mid1
+
+		// assign the correct values to the 4 boundary values
+		left1, left2 := math.MinInt, math.MinInt
+		right1, right2 := math.MaxInt, math.MaxInt
+		if mid1 > 0 {
+			left1 = arr1[mid1-1]
+		}
+		if mid2 > 0 {
+			left2 = arr2[mid2-1]
+		}
+		if mid1 < len1 {
+			right1 = arr1[mid1]
+		}
+		if mid2 < len2 {
+			right2 = arr2[mid2]
+		}
+
+		// base condition
+		if left1 < right2 && left2 < right1 {
+			if total%2 == 0 {
+				return float64(max(left1, left2)+min(right1, right2)) / 2.0
+			} else {
+				return float64(max(left1, left2))
+			}
+		}
+
+		// go left: more elements of arr1 have been considered than needed
+		// we need to reduce the number of elements of arr1 (take mid towards low)
+		if left1 > right2 {
+			high = mid1 - 1
+		}
+
+		// go right: more eleements of arr2 have been considered thatn needed,
+		// we need to use more of arr1 elements: take mid to high value
+		if left2 > right1 {
+			low = mid1 + 1
+		}
+	}
+
+	return -1.0 // should never reach
 }
 
 func main() {
