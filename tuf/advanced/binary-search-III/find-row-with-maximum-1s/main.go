@@ -5,7 +5,7 @@ import (
 	"math"
 )
 
-func rowWithMax1s(mat [][]int) int {
+func bruteRowWithMax1s(mat [][]int) int {
 	maxOnes, maxOnesRow := math.MinInt, -1
 	rows, cols := len(mat), len(mat[0])
 
@@ -80,17 +80,17 @@ func optimalRowWithMax1s(mat [][]int) int {
 
 func main() {
 	mat := [][]int{{1, 1, 1}, {0, 0, 1}, {0, 0, 0}}
-	fmt.Printf("The row with maximum number of 1's in %v is %d\n", mat, rowWithMax1s(mat))
+	fmt.Printf("The row with maximum number of 1's in %v is %d\n", mat, bruteRowWithMax1s(mat))
 	fmt.Printf("The row with maximum number of 1's in %v is %d\n", mat, betterRowWithMax1s(mat))
 	fmt.Printf("The row with maximum number of 1's in %v is %d\n", mat, optimalRowWithMax1s(mat))
 
 	mat = [][]int{{0, 0}, {0, 0}}
-	fmt.Printf("The row with maximum number of 1's in %v is %d\n", mat, rowWithMax1s(mat))
+	fmt.Printf("The row with maximum number of 1's in %v is %d\n", mat, bruteRowWithMax1s(mat))
 	fmt.Printf("The row with maximum number of 1's in %v is %d\n", mat, betterRowWithMax1s(mat))
 	fmt.Printf("The row with maximum number of 1's in %v is %d\n", mat, optimalRowWithMax1s(mat))
 
 	mat = [][]int{{0, 0, 1}, {0, 1, 1}, {0, 1, 1}}
-	fmt.Printf("The row with maximum number of 1's in %v is %d\n", mat, rowWithMax1s(mat))
+	fmt.Printf("The row with maximum number of 1's in %v is %d\n", mat, bruteRowWithMax1s(mat))
 	fmt.Printf("The row with maximum number of 1's in %v is %d\n", mat, betterRowWithMax1s(mat))
 	fmt.Printf("The row with maximum number of 1's in %v is %d\n", mat, optimalRowWithMax1s(mat))
 }
