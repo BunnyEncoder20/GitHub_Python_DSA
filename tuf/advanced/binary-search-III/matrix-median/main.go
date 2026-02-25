@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"slices"
 )
 
@@ -26,6 +27,56 @@ func findMedian(mat [][]int) int {
 	} else {
 		return matSlice[n/2]
 	}
+}
+
+func optimalFindMedian(matrix [][]int) int {
+	rows, cols := len(matrix), len(matrix[0])
+	n := rows * cols
+	reqOnLeft := n / 2 // median always has n/2 elements to it's left
+
+	low, high := getLowAndHigh(matrix, rows, cols)
+	for low <= high {
+		mid := low + (high-low)/2
+		numOfLessThanEqual := getLessThanEqual(matrix, mid)
+
+		if numOfLessThanEqual > reqOnLeft {
+			high = mid - 1
+		} else {
+			low = mid + 1
+		}
+	}
+
+	return low
+}
+
+func getLowAndHigh(matrix [][]int, rows int, cols int) (int, int) {
+	low, high := math.MaxInt, math.MinInt
+	for i := range rows {
+		low = min(low, matrix[i][0])
+		high = max(high, matrix[i][cols-1])
+	}
+	return low, high
+}
+
+func getLessThanEqual(matrix [][]int, target int) int {
+	lessThanEqualCount := 0
+	for i := range len(matrix) {
+		lessThanEqualCount += getUpperBound(matrix[i], target)
+	}
+	return lessThanEqualCount
+}
+
+func getUpperBound(arr []int, target int) int {
+	low, high := 0, len(arr)-1
+	for low <= high {
+		mid := low + (high-low)/2
+		if arr[mid] > target {
+			high = mid - 1
+		} else {
+			low = mid + 1
+		}
+	}
+	return low
 }
 
 func main() {
