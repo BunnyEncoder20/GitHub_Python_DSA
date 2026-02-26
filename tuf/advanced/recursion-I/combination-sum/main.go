@@ -2,11 +2,15 @@ package main
 
 import (
 	"fmt"
+	"slices"
 )
 
 func combinationSum(candidates []int, target int) [][]int {
+	// The maximum size of each of the arrays could at max be = target/min_candidate
 	ans := [][]int{}
-	recursivelyCheckSum(0, []int{}, target, candidates, &ans)
+	currCombo := make([]int, 0, target/slices.Min(candidates))
+
+	recursivelyCheckSum(0, currCombo, target, candidates, &ans)
 	return ans
 }
 
